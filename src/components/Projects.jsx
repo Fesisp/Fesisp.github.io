@@ -3,107 +3,165 @@ import { Github, ExternalLink, Code2, Terminal, Cpu, Database, X } from 'lucide-
 import Carousel from './reactbits/Carousel';
 
 const projectsData = [
+  // PROJETOS EM DESTAQUE
   {
     id: 1,
-    title: 'Simulador Bancário',
-    desc: 'Otimização de sistema bancário com Python, focado em estrutura de dados e modularização.',
-    tags: ['Python', 'Logic', 'Backend'],
-    category: 'personal',
-    links: { repo: 'https://github.com/Fesisp/Dio-Python-Challenge', demo: '#' },
-    gradient: 'from-teal-500 to-blue-600',
-    color: '#007396',
-    icon: <Terminal size={40} />
+    name: 'Ambiente Escolar Digital',
+    title: 'SaaS de Gestão Acadêmica (ERP)',
+    desc: 'Plataforma completa de gestão escolar com arquitetura de microsserviços. Implementa controle de acesso granular (RBAC), auditoria de dados (LGPD) e deploy containerizado.',
+    tags: ['Python', 'Flask', 'Docker', 'PostgreSQL', 'RBAC'],
+    category: 'professional',
+    featured: true,
+    links: { repo: 'https://github.com/Fesisp/Ambiente-Escolar-Digital', demo: '#' },
+    gradient: 'from-emerald-600 to-teal-500',
+    color: '#10B981',
+    icon: <Database size={40} />
   },
   {
     id: 2,
-    title: 'Azure AI Lab',
-    desc: 'Soluções de Inteligência Artificial utilizando serviços cognitivos da Azure.',
-    tags: ['Azure', 'AI', 'Cloud'],
+    name: 'Automação DevOps',
+    title: 'Automação de Infraestrutura & Bots',
+    desc: 'Conjunto de scripts e bots desenvolvidos para automatizar tarefas repetitivas de sustentação (Toil), monitoramento de servidores e alertas inteligentes.',
+    tags: ['Python', 'Automação', 'Zabbix', 'API', 'Bash'],
     category: 'professional',
+    featured: true,
+    links: { repo: '#', demo: '#' },
+    gradient: 'from-orange-600 to-red-600',
+    color: '#F05032',
+    icon: <Terminal size={40} />
+  },
+  {
+    id: 3,
+    name: 'Azure Cloud Lab',
+    title: 'Azure Cloud Lab & AI',
+    desc: 'Laboratórios práticos de provisionamento de recursos em nuvem e implementação de serviços cognitivos de IA, alinhados com as melhores práticas da Microsoft.',
+    tags: ['Azure', 'Cloud Computing', 'AI-900'],
+    category: 'professional',
+    featured: true,
     links: { repo: 'https://github.com/Fesisp/Dio-Azure-Challenge', demo: '#' },
     gradient: 'from-blue-700 to-cyan-500',
     color: '#0078D4',
     icon: <Cpu size={40} />
   },
   {
-    id: 3,
-    title: 'Podcast Gen AI',
-    desc: 'Workflow de IA Generativa para criação de podcasts automatizados.',
-    tags: ['OpenAI', 'GenAI', 'Python'],
-    category: 'personal',
-    links: { repo: 'https://github.com/Fesisp/prompts-for-podcast-generate-by-ia', demo: '#' },
-    gradient: 'from-pink-500 to-rose-600',
-    color: '#FF69B4',
+    id: 4,
+    name: 'Portfolio Pessoal Interativo',
+    title: 'Site com Estética Cyberpunk e Matrix Rain',
+    desc: 'Portfolio interativo desenvolvido com React, Tailwind CSS e Framer Motion, apresentando interface com efeito Matrix Rain, cursor personalizado, carrossel 3D de projetos e integração entre seções Tech Stack e Projetos.',
+    tags: ['React', 'Tailwind CSS', 'Framer Motion', 'Vite', 'JavaScript'],
+    category: 'professional',
+    featured: true,
+    links: { repo: 'https://github.com/Fesisp/Fesisp.github.io', demo: 'https://fesisp.github.io' },
+    gradient: 'from-purple-600 to-pink-500',
+    color: '#9333EA',
     icon: <Code2 size={40} />
   },
-  {
-    id: 4,
-    title: 'NTT Data Bootcamp',
-    desc: 'Desafios práticos de desenvolvimento backend e engenharia de dados.',
-    tags: ['Java', 'Spring', 'Data'],
-    category: 'professional',
-    links: { repo: 'https://github.com/Fesisp/NTT-Data', demo: '#' },
-    gradient: 'from-orange-500 to-red-600',
-    color: '#F05032',
-    icon: <Database size={40} />
-  },
+  
+  // PROJETOS SIMPLES
   {
     id: 5,
-    title: 'Jogo da Forca',
-    desc: 'Aplicação console clássica implementada em Java com lógica robusta.',
-    tags: ['Java', 'Console', 'Game'],
+    name: 'Arquitetura de Microserviços',
+    title: 'Sistema de Gestão de Pedidos com Spring Cloud',
+    desc: 'Arquitetura completa de microserviços implementando Service Discovery com Eureka, API Gateway, Circuit Breaker com Resilience4j, containerização Docker e pipeline CI/CD automatizado.',
+    tags: ['Java', 'Spring Boot', 'Spring Cloud', 'Docker', 'Microservices'],
     category: 'personal',
-    links: { repo: 'https://github.com/Fesisp/Jogo-da-Forca-com-uma-Aplicacao-Console-Java', demo: '#' },
-    gradient: 'from-yellow-500 to-orange-500',
-    color: '#FFA500',
+    featured: false,
+    links: { repo: 'https://github.com/Fesisp/NTT-Data-Architecture', demo: '#' },
+    gradient: 'from-orange-600 to-red-600',
+    color: '#F05032',
     icon: <Terminal size={40} />
   },
   {
     id: 6,
-    title: 'Controle Financeiro',
-    desc: 'Sistema de transações financeiras aplicando conceitos avançados de POO.',
-    tags: ['C#', 'POO', 'Backend'],
-    category: 'professional',
-    links: { repo: 'https://github.com/Fesisp/Controle-de-transacoes-financeiras-em-POO', demo: '#' },
-    gradient: 'from-green-600 to-teal-600',
-    color: '#008000',
-    icon: <Code2 size={40} />
-  },
-  {
-    id: 7,
-    title: 'Copilot Studio Bot',
-    desc: 'Chatbot inteligente desenvolvido com Microsoft Copilot Studio.',
-    tags: ['Copilot', 'Low-code', 'AI'],
-    category: 'professional',
-    links: { repo: 'https://github.com/Fesisp/Dio-Copilot-Desafio', demo: '#' },
-    gradient: 'from-purple-600 to-indigo-600',
-    color: '#800080',
+    name: 'Biblioteca de Processamento de Imagens',
+    title: 'Pacote PyPI para Transformação e Análise',
+    desc: 'Biblioteca Python modular estruturada para distribuição via PyPI, implementando transformações de imagem, comparação estrutural, transferência de histogramas usando scikit-image.',
+    tags: ['Python', 'PyPI', 'scikit-image', 'Image Processing'],
+    category: 'personal',
+    featured: false,
+    links: { repo: 'https://github.com/Fesisp/image-processing-toolkit', demo: '#' },
+    gradient: 'from-blue-700 to-cyan-500',
+    color: '#0078D4',
     icon: <Cpu size={40} />
   },
   {
-    id: 8,
-    title: 'Portfolio Pessoal',
-    desc: 'Este site! Desenvolvido com React, Tailwind e Framer Motion.',
-    tags: ['React', 'Tailwind', 'TypeScript'],
+    id: 7,
+    name: 'Sistema Bancário com POO',
+    title: 'Aplicação de Gerenciamento Financeiro',
+    desc: 'Sistema bancário completo implementando autenticação segura, operações de depósito, saque e transferência PIX, histórico de transações e persistência de dados com SQLite.',
+    tags: ['Python', 'SQLite', 'OOP', 'Database'],
     category: 'personal',
-    links: { repo: '#', demo: '#' },
-    gradient: 'from-cyan-500 to-blue-500',
-    color: '#61DAFB',
+    featured: false,
+    links: { repo: 'https://github.com/Fesisp/Python-Banking-System', demo: '#' },
+    gradient: 'from-green-600 to-emerald-500',
+    color: '#10B981',
+    icon: <Database size={40} />
+  },
+  {
+    id: 8,
+    name: 'Jogo da Forca em Console',
+    title: 'Game Clássico com Gerenciamento de Estado',
+    desc: 'Jogo da Forca desenvolvido em Java com arquitetura modular, banco de palavras categorizadas, sistema de pontuação e renderização progressiva de ASCII art.',
+    tags: ['Java', 'Console', 'OOP', 'Game'],
+    category: 'personal',
+    featured: false,
+    links: { repo: 'https://github.com/Fesisp/Java-Game-Console-Hangman', demo: '#' },
+    gradient: 'from-yellow-600 to-orange-500',
+    color: '#F59E0B',
+    icon: <Code2 size={40} />
+  },
+  {
+    id: 9,
+    name: 'Sistema de Transações Financeiras',
+    title: 'Backend Bancário com Repository Pattern',
+    desc: 'Sistema de gestão bancária implementando três tipos polimórficos de contas com Repository Pattern. Gerencia clientes, transações completas e rendimentos automáticos.',
+    tags: ['Java', 'OOP', 'Design Patterns', 'Maven'],
+    category: 'personal',
+    featured: false,
+    links: { repo: 'https://github.com/Fesisp/Java-Financial-System-OOP', demo: '#' },
+    gradient: 'from-indigo-600 to-purple-500',
+    color: '#6366F1',
+    icon: <Database size={40} />
+  },
+  {
+    id: 10,
+    name: 'Validador de Cartão com IA',
+    title: 'Identificador de Bandeiras com GitHub Copilot',
+    desc: 'Ferramenta desenvolvida com assistência de GitHub Copilot para identificar bandeiras de cartões e validar checksums usando algoritmo de Luhn. Inclui testes com Pytest e CI/CD.',
+    tags: ['Python', 'GitHub Copilot', 'Pytest', 'CI/CD'],
+    category: 'personal',
+    featured: false,
+    links: { repo: 'https://github.com/Fesisp/AI-AssistedCard-Validator', demo: '#' },
+    gradient: 'from-pink-600 to-rose-500',
+    color: '#EC4899',
+    icon: <Cpu size={40} />
+  },
+  {
+    id: 11,
+    name: 'Sudoku com GUI e Console',
+    title: 'Jogo Completo com Geração Automática',
+    desc: 'Implementação completa de Sudoku em Java com GUI usando Swing e modo console. Geração automática de puzzles usando backtracking, três níveis de dificuldade e validação em tempo real.',
+    tags: ['Java', 'Swing', 'Algorithms', 'OOP'],
+    category: 'personal',
+    featured: false,
+    links: { repo: 'https://github.com/Fesisp/Java-Game-Sudoku-OOP', demo: '#' },
+    gradient: 'from-red-600 to-rose-500',
+    color: '#DC2626',
     icon: <Code2 size={40} />
   }
 ];
 
 const Projects = ({ activeTech, onClearFilter }) => {
-  const [filter, setFilter] = useState('all');
-  const [profIndex, setProfIndex] = useState(0);
-  const [persIndex, setPersIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [filter, setFilter] = useState('featured'); // 'all', 'featured', 'simple'
 
   const filteredData = activeTech 
-    ? projectsData.filter(p => p.tags.includes(activeTech))
+    ? projectsData.filter(p => p.tags.some(tag => tag.toLowerCase().includes(activeTech.toLowerCase())))
+    : filter === 'featured'
+    ? projectsData.filter(p => p.featured)
+    : filter === 'simple'
+    ? projectsData.filter(p => !p.featured)
     : projectsData;
-
-  const personalProjects = filteredData.filter(project => project.category === 'personal');
-  const professionalProjects = filteredData.filter(project => project.category === 'professional');
 
   const formatIndex = (current, total) => {
     if (total === 0) return "00/00";
@@ -112,9 +170,11 @@ const Projects = ({ activeTech, onClearFilter }) => {
 
   const getCarouselItems = (projects) => projects.map(project => ({
     id: project.id,
+    name: project.name,
     title: project.title,
     description: project.desc,
     links: project.links,
+    tags: project.tags,
     icon: (
       <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${project.gradient} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
         <div className="text-white drop-shadow-md">
@@ -126,15 +186,49 @@ const Projects = ({ activeTech, onClearFilter }) => {
 
   return (
     <section id="projects" className="py-4 overflow-hidden min-h-screen flex flex-col justify-center relative">
-      <div className="container mx-auto px-6 mb-4">
-        <h2 className="text-3xl font-bold text-center text-white relative inline-block left-1/2 -translate-x-1/2 mb-4">
-          Projetos em Destaque
+      <div className="container mx-auto px-6 mb-8">
+        <h2 className="text-3xl font-bold text-center text-white relative inline-block left-1/2 -translate-x-1/2 mb-6">
+          Projetos
           <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary rounded-full"></span>
         </h2>
 
+        {/* Filter Buttons */}
+        <div className="flex items-center justify-center gap-4 mb-6">
+          <button
+            onClick={() => setFilter('featured')}
+            className={`px-4 py-2 rounded-lg font-medium transition-all ${
+              filter === 'featured'
+                ? 'bg-primary text-black shadow-[0_0_15px_rgba(0,255,65,0.3)]'
+                : 'bg-surface border border-white/10 text-gray-400 hover:border-primary/50 hover:text-white'
+            }`}
+          >
+            Projetos em Destaque
+          </button>
+          <button
+            onClick={() => setFilter('simple')}
+            className={`px-4 py-2 rounded-lg font-medium transition-all ${
+              filter === 'simple'
+                ? 'bg-primary text-black shadow-[0_0_15px_rgba(0,255,65,0.3)]'
+                : 'bg-surface border border-white/10 text-gray-400 hover:border-primary/50 hover:text-white'
+            }`}
+          >
+            Projetos Simples
+          </button>
+          <button
+            onClick={() => setFilter('all')}
+            className={`px-4 py-2 rounded-lg font-medium transition-all ${
+              filter === 'all'
+                ? 'bg-primary text-black shadow-[0_0_15px_rgba(0,255,65,0.3)]'
+                : 'bg-surface border border-white/10 text-gray-400 hover:border-primary/50 hover:text-white'
+            }`}
+          >
+            Todos
+          </button>
+        </div>
+
         {activeTech && (
-          <div className="flex items-center justify-center gap-2 mb-6 animate-pulse">
-            <span className="text-sm text-gray-400">Filtrando por tecnologia: </span>
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <span className="text-sm text-gray-400">Filtrando por: </span>
             <span className="text-primary font-bold text-lg border-b border-primary">{activeTech}</span>
             <button 
               onClick={onClearFilter}
@@ -145,69 +239,29 @@ const Projects = ({ activeTech, onClearFilter }) => {
             </button>
           </div>
         )}
-
-        {/* Filter Buttons */}
-        <div className="flex justify-center gap-4 mb-4">
-          {['all', 'personal', 'professional'].map((type) => (
-            <button
-              key={type}
-              onClick={() => setFilter(type)}
-              className={`px-4 py-1 rounded-full text-xs font-bold transition-all border ${
-                filter === type 
-                  ? 'bg-primary text-black border-primary shadow-[0_0_15px_rgba(0,255,65,0.4)]' 
-                  : 'bg-transparent text-gray-400 border-white/10 hover:border-primary/50 hover:text-white'
-              }`}
-            >
-              {type === 'all' ? 'Todos' : type === 'personal' ? 'Pessoais' : 'Profissionais'}
-            </button>
-          ))}
-        </div>
       </div>
 
       <div className="w-full max-w-[1400px] mx-auto flex flex-col gap-2">
-        {filteredData.length === 0 && (
-           <div className="text-center text-gray-400 mt-10">
-             Nenhum projeto encontrado com a tecnologia <span className="text-primary">{activeTech}</span>.
-           </div>
-        )}
-
-        {(filter === 'all' || filter === 'professional') && professionalProjects.length > 0 && (
+        {filteredData.length === 0 ? (
+          <div className="text-center text-gray-400 mt-10">
+            Nenhum projeto encontrado com a tecnologia <span className="text-primary">{activeTech}</span>.
+          </div>
+        ) : (
           <div className="flex flex-col items-center w-full">
             <h3 className="text-lg font-bold text-white mb-2 pl-6 self-start border-l-4 border-primary ml-4 md:ml-20">
-              Projetos Profissionais <span className="text-sm font-normal text-gray-400 ml-2">{formatIndex(profIndex, professionalProjects.length)}</span>
+              Soluções & Arquitetura <span className="text-sm font-normal text-gray-400 ml-2">{formatIndex(currentIndex, filteredData.length)}</span>
             </h3>
             <div className="w-full flex justify-center -mt-4">
               <Carousel 
-                key={`prof-${activeTech || 'all'}-${professionalProjects.length}`}
-                items={getCarouselItems(professionalProjects)} 
+                key={`projects-${activeTech || 'all'}-${filteredData.length}`}
+                items={getCarouselItems(filteredData)} 
                 baseWidth={300} 
                 autoplay={true} 
-                autoplayDelay={3000}
+                autoplayDelay={4000}
                 pauseOnHover={true}
                 loop={true}
                 round={false}
-                onIndexChange={setProfIndex}
-              />
-            </div>
-          </div>
-        )}
-
-        {(filter === 'all' || filter === 'personal') && personalProjects.length > 0 && (
-          <div className="flex flex-col items-center w-full">
-            <h3 className="text-lg font-bold text-white mb-2 pl-6 self-start border-secondary ml-4 md:ml-20">
-              Projetos Pessoais <span className="text-sm font-normal text-gray-400 ml-2">{formatIndex(persIndex, personalProjects.length)}</span>
-            </h3>
-            <div className="w-full flex justify-center -mt-4">
-              <Carousel 
-                key={`pers-${activeTech || 'all'}-${personalProjects.length}`}
-                items={getCarouselItems(personalProjects)} 
-                baseWidth={300} 
-                autoplay={true} 
-                autoplayDelay={3500}
-                pauseOnHover={true}
-                loop={true}
-                round={false}
-                onIndexChange={setPersIndex}
+                onIndexChange={setCurrentIndex}
               />
             </div>
           </div>

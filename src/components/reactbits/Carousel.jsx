@@ -205,8 +205,21 @@ export default function Carousel({
                 <span className="carousel-icon-container">{item.icon}</span>
               </div>
               <div className="carousel-item-content">
+                {item.name && <div className="text-xs font-bold text-primary mb-1 uppercase tracking-wide">{item.name}</div>}
                 <div className="carousel-item-title">{item.title}</div>
                 <p className="carousel-item-description">{item.description}</p>
+                {item.tags && item.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-1 mt-2 mb-2">
+                    {item.tags.map((tag, tagIndex) => (
+                      <span 
+                        key={tagIndex}
+                        className="px-2 py-0.5 text-[10px] font-semibold rounded-full bg-primary/20 text-primary border border-primary/30 backdrop-blur-sm"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
                 {item.links && (
                   <div className="carousel-item-links">
                     {item.links.repo && (

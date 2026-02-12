@@ -20,15 +20,15 @@ const About = () => {
               <h3 className="text-xl font-bold text-white">Quem Sou</h3>
             </div>
             <p className="text-gray-400 leading-loose mb-6">
-              Nascido em Manaus e com vivência no Rio de Janeiro, hoje construo minha carreira em <strong>Boa Vista (RR)</strong>, trazendo na bagagem uma combinação rara: a disciplina militar e a inovação da engenharia de software.
+              Minha base é a infraestrutura. Com mais de 4 anos atuando em ambientes de alta criticidade (Exército Brasileiro e Positivo S+), desenvolvi a "casca grossa" necessária para manter sistemas no ar sob pressão.
             </p>
             <p className="text-gray-400 leading-loose">
-              <strong>Bacharelando em Ciência da Computação</strong> e prestes a concluir Tecnologia em Segurança Pública, meu objetivo é unir a robustez da infraestrutura (DevOps/SRE) com a criatividade do desenvolvimento Backend para criar soluções que impactem vidas e negócios globalmente.
+              Não sou apenas um operador; sou um construtor. Nos últimos 2 anos, expandi minha atuação para a Engenharia de Software, criando soluções SaaS completas para resolver problemas reais de gestão. Hoje, atuo na lacuna entre Dev e Ops, <strong>automatizando processos manuais com Python e containerizando aplicações com Docker</strong>.
             </p>
             
             <div className="flex gap-8 mt-8 pt-8 border-t border-white/5">
               <div>
-                <h4 className="text-3xl font-bold text-primary">5+</h4>
+                <h4 className="text-3xl font-bold text-primary">4.5+</h4>
                 <span className="text-sm text-gray-500">Anos Exp.</span>
               </div>
               <div>
@@ -51,25 +51,25 @@ const About = () => {
               <div className="relative pl-6">
                 <span className="absolute -left-[21px] top-1 w-3 h-3 rounded-full bg-primary shadow-[0_0_0_4px_rgba(10,10,10,1)]"></span>
                 <span className="text-xs font-mono text-primary mb-1 block">Nov 2025 - Atual</span>
-                <h4 className="text-white font-bold">Técnico de Suporte Sênior</h4>
+                <h4 className="text-white font-bold">Analista de Sustentação & Automação (N3)</h4>
                 <span className="text-sm text-gray-500 block mb-2">Positivo S+ (DNIT)</span>
-                <p className="text-sm text-gray-400">Atuação vai além do suporte tradicional: combino infraestrutura, automação e desenvolvimento para garantir a continuidade de serviços críticos do DNIT.</p>
+                <p className="text-sm text-gray-400">Atuação na sustentação de infraestrutura crítica. Foco em observabilidade avançada (Zabbix), automação de scripts de correção e garantia de SLA para serviços governamentais.</p>
               </div>
 
               <div className="relative pl-6">
                 <span className="absolute -left-[21px] top-1 w-3 h-3 rounded-full bg-gray-600 shadow-[0_0_0_4px_rgba(10,10,10,1)]"></span>
                 <span className="text-xs font-mono text-gray-500 mb-1 block">2023 - Nov 2025</span>
-                <h4 className="text-white font-bold">Desenvolvedor Full Stack</h4>
-                <span className="text-sm text-gray-500 block mb-2">Secretaria de Educação - RR</span>
-                <p className="text-sm text-gray-400">Idealizei e desenvolvi o <strong>"Ambiente Escolar Digital"</strong>, uma plataforma SaaS completa que modernizou o controle acadêmico da instituição.</p>
+                <h4 className="text-white font-bold">Desenvolvedor Full Stack & Arquiteto de Sistemas</h4>
+                <span className="text-sm text-gray-500 block mb-2">Secretaria de Educação - RR (Projeto Interno)</span>
+                <p className="text-sm text-gray-400">Idealizei, arquitetei e desenvolvi o <strong>"Ambiente Escolar Digital"</strong>, uma plataforma SaaS completa (Python/Flask/Docker). O sistema modernizou o controle acadêmico, implementando segurança RBAC e reduzindo em 40% o tempo de gestão administrativa.</p>
               </div>
 
               <div className="relative pl-6">
                 <span className="absolute -left-[21px] top-1 w-3 h-3 rounded-full bg-gray-600 shadow-[0_0_0_4px_rgba(10,10,10,1)]"></span>
                 <span className="text-xs font-mono text-gray-500 mb-1 block">2019 - 2023</span>
-                <h4 className="text-white font-bold">Técnico de TI & Analista de Dados</h4>
+                <h4 className="text-white font-bold">Analista de Infraestrutura & Dados</h4>
                 <span className="text-sm text-gray-500 block mb-2">Exército Brasileiro</span>
-                <p className="text-sm text-gray-400">Desenvolvimento de dashboards estratégicos em <strong>Power BI</strong> para logística e comando. Gestão de infraestrutura de TI sob pressão e informações críticas.</p>
+                <p className="text-sm text-gray-400">Gestão de infraestrutura de TI sob protocolos militares de segurança. Desenvolvimento de Dashboards estratégicos em <strong>Power BI</strong> para logística e comando.</p>
               </div>
             </div>
           </div>

@@ -43,18 +43,18 @@ const Hero = () => {
             </motion.div>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">
-            Transformando Dados em <span className="text-primary">Inteligência</span>
+            Python Backend & <span className="text-primary">DevOps Engineer</span>
           </h1>
           <div className="text-xl md:text-2xl text-gray-400 font-mono mb-6 h-16 md:h-auto">
             <TypeAnimation
               sequence={[
-                'Engenheiro de Dados',
+                'Python Developer',
                 2000,
-                'Desenvolvedor Java',
+                'DevOps Engineer',
                 2000,
-                'Especialista em IA',
+                'Automação & Infraestrutura',
                 2000,
-                'Desenvolvedor Python',
+                'Docker & Cloud',
                 2000
               ]}
               wrapper="span"
@@ -64,12 +64,12 @@ const Hero = () => {
             />
           </div>
           <p className="text-gray-400 mb-8 max-w-lg leading-relaxed">
-            De Manaus ao Rio, hoje em Boa Vista (RR). Unindo disciplina militar, engenharia de software e visão estratégica para criar soluções que impactam vidas e negócios.
+            Desenvolvedor especializado em automação e infraestrutura. Unindo a robustez do Python com a escalabilidade do Docker e Nuvem.
           </p>
           
           <div className="flex flex-wrap gap-4">
             <a href="#projects" className="px-6 py-3 bg-primary text-black font-bold rounded-lg hover:bg-secondary transition-all flex items-center gap-2 shadow-[0_0_20px_rgba(0,255,65,0.3)] hover:shadow-[0_0_30px_rgba(0,255,65,0.5)]">
-              Ver Projetos <ArrowRight size={20} />
+              Ver Soluções <ArrowRight size={20} />
             </a>
             <a href="/curriculo.pdf" download className="px-6 py-3 border border-gray-700 text-white font-medium rounded-lg hover:border-primary hover:text-primary transition-all flex items-center gap-2 bg-surface/50 backdrop-blur-sm">
               Download CV <Download size={20} />
@@ -105,7 +105,7 @@ const Hero = () => {
                   </div>
                   <div>
                     <h3 className="text-white font-bold">Felipe da Silva Spínola</h3>
-                    <p className="text-xs text-primary font-mono">ID: TI-SENIOR</p>
+                    <p className="text-xs text-primary font-mono">ID: PYTHON-DEVOPS</p>
                   </div>
                 </div>
 
@@ -113,20 +113,20 @@ const Hero = () => {
                   <div className="flex justify-between">
                     <span>Status</span>
                     <span className="text-primary flex items-center gap-2">
-                      <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span> Online
+                      <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span> Building...
                     </span>
                   </div>
                   <div className="flex justify-between">
                     <span>Nível</span>
-                    <span className="text-white">Sênior</span>
+                    <span className="text-white">Pleno / Mid-Level</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Stack</span>
+                    <span className="text-white">Python + Infra</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Exp</span>
-                    <span className="text-white">5+ Anos</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Local</span>
-                    <span className="text-white">Boa Vista - RR</span>
+                    <span className="text-white">4.5+ Anos</span>
                   </div>
                 </div>
 
@@ -155,7 +155,7 @@ const Hero = () => {
                   <div>
                     <p className="text-gray-500 text-xs mb-1">ESPECIALIZAÇÕES</p>
                     <div className="flex flex-wrap gap-2">
-                      {['Data Engineering', 'Cloud Arch', 'Cybersecurity', 'AI/ML'].map(tag => (
+                      {['DevOps', 'Docker', 'Python', 'CI/CD'].map(tag => (
                         <span key={tag} className="px-2 py-1 bg-primary/10 text-primary text-xs rounded border border-primary/20">
                           {tag}
                         </span>
