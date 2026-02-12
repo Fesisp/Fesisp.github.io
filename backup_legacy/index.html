@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Portfólio de Felipe da Silva Spínola: Analista de Dados e Desenvolvedor Back-end." />
+  <title>Felipe da Silva Spínola | Data & Dev</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* Palette Modern Cyber-Professional */
+      --bg: #050505;
+      --surface: #0f0f0f;
+      --surface2: #161616;
+      --surface-hover: #1f1f1f;
+      
+      --primary: #10b981; /* Emerald 500 */
+      --primary-dim: rgba(16, 185, 129, 0.1);
+      --primary-glow: rgba(16, 185, 129, 0.4);
+      
+      --secondary: #3b82f6; /* Blue 500 */
+      --accent: #00ff9d; /* Bright Green for highlights */
+      
+      --text: #e5e5e5;
+      --text-muted: #a3a3a3;
+      --text-dim: #525252;
+      
+      --border: rgba(255,255,255,0.08);
+      --border-hover: rgba(16, 185, 129, 0.3);
+      
+      --grad-main: linear-gradient(135deg, #10b981, #3b82f6);
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+      
+      --font-main: 'Poppins', sans-serif;
+      --font-code: 'Fira Code', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: var(--font-main);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    /* Background Effects */
+    #console-bg {
+      position: fixed; top: 0; left: 0; width: 40vw; height: 100vh;
+      z-index: -2; opacity: 0.15; pointer-events: none;
+      mask-image: linear-gradient(to right, black, transparent);
+      -webkit-mask-image: linear-gradient(to right, black, transparent);
+    }
+    
+    #matrix-bg {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1; opacity: 0.07; pointer-events: none;
+    }
+
+    /* Typography & Layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+    }
+    
+    h1, h2, h3, h4 { line-height: 1.2; color: #fff; font-weight: 600; }
+    h1 { font-size: 3.5rem; letter-spacing: -1px; margin-bottom: 1rem; }
+    h2 { font-size: 2.5rem; margin-bottom: 3rem; text-align: center; position: relative; display: inline-block; left: 50%; transform: translateX(-50%); }
+    h2::after {
+      content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
+      width: 60px; height: 4px; background: var(--grad-main); border-radius: 2px;
+    }
+    h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+    p { color: var(--text-muted); margin-bottom: 1.5rem; font-size: 1rem; }
+    
+    a { text-decoration: none; color: inherit; transition: 0.3s; }
+    ul { list-style: none; }
+
+    /* Navbar */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: rgba(5, 5, 5, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      z-index: 1000;
+      padding: 1rem 0;
+      transition: 0.3s;
+    }
+    .navbar.scrolled { padding: 0.8rem 0; background: rgba(5, 5, 5, 0.95); border-bottom-color: var(--primary); }
+    
+    .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+    
+    .logo {
+      font-family: var(--font-code);
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--text);
+      letter-spacing: -0.5px;
+      text-shadow: 0 0 10px var(--primary-dim);
+    }
+    .logo span { color: var(--primary); }
+    
+    .nav-links { display: flex; gap: 2.5rem; }
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      position: relative;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+      background: var(--primary); transition: 0.3s;
+    }
+    .nav-links a:hover::after { width: 100%; }
+    
+    .hamburger { display: none; font-size: 1.8rem; color: var(--text); cursor: pointer; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.8rem 1.8rem;
+      background: var(--primary);
+      color: #000;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px -5px var(--primary-glow);
+      filter: brightness(1.1);
+    }
+    
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-dim);
+    }
+
+    /* Sections */
+    section { padding: 5rem 0; border-bottom: 1px solid rgba(255,255,255,0.02); }
+    
+    /* Hero */
+    #inicio {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 100px;
+      padding-bottom: 2rem;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2rem;
+      align-items: center;
+    }
+    .hero-tag {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      background: var(--primary-dim);
+      color: var(--primary);
+      border-radius: 99px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+    .hero-role {
+      font-family: var(--font-code);
+      color: var(--secondary);
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+    
+    /* Lanyard Badge */
+    .lanyard-wrapper {
+      position: relative;
+      height: 500px;
+      display: flex;
+      justify-content: center;
+      perspective: 1000px;
+    }
+    .badge-container {
+      width: 280px;
+      transform-origin: top center;
+      transform-style: preserve-3d;
+      cursor: grab;
+    }
+    .badge-container:active { cursor: grabbing; }
+    
+    .badge-card {
+      width: 100%;
+      aspect-ratio: 2/3;
+      background: linear-gradient(160deg, #202020, #101010);
+      border-radius: 24px;
+      position: relative;
+      transform-style: preserve-3d;
+      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      overflow: hidden;
+    }
+    .badge-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.05), transparent);
+      z-index: 2; pointer-events: none;
+    }
+    .badge-content {
+      padding: 2rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      background: transparent;
+    }
+    .badge-photo {
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      border: 4px solid var(--primary);
+      margin-bottom: 1rem;
+      overflow: hidden;
+      box-shadow: 0 0 25px var(--primary-glow);
+    }
+    .badge-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+    .btn-cv-icon {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 40px; height: 40px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      transition: 0.3s;
+      cursor: pointer;
+      z-index: 10;
+    }
+    .btn-cv-icon:hover {
+      background: var(--primary);
+      color: #000;
+      box-shadow: 0 0 15px var(--primary-glow);
+      transform: rotate(15deg);
+    }
+    
+    /* Cards & Grids */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: 0.3s;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      background: var(--surface-hover);
+    }
+    
+    /* Skills */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 1.2rem;
+    }
+    .tech-item {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      min-height: 130px;
+      justify-content: center;
+    }
+    .tech-item i { font-size: 2.5rem; color: var(--text-muted); transition: 0.3s; }
+    .tech-item span { font-size: 0.85rem; font-weight: 500; color: var(--text-muted); }
+    
+    .tech-item:hover, .tech-item.selected {
+      border-color: var(--primary);
+      background: var(--primary-dim);
+    }
+    .tech-item:hover i, .tech-item.selected i { color: var(--primary); transform: scale(1.1); }
+    .tech-item:hover span, .tech-item.selected span { color: #fff; }
+
+    /* New Components */
+    .tech-level {
+      font-size: 0.75rem;
+      color: var(--primary);
+      font-family: var(--font-code);
+      margin-top: 0.2rem;
+      font-weight: 600;
+      opacity: 0;
+      max-height: 0;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+    .tech-item.selected .tech-level {
+      opacity: 1;
+      max-height: 20px;
+      margin-top: 0.5rem;
+    }
+    .skill-display {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2.5rem;
+      display: none; /* Hidden by default */
+      animation: slideDown 0.4s ease;
+    }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    
+    .skill-header { display: flex; justify-content: space-between; margin-bottom: 0.8rem; }
+    .skill-track { width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden; }
+    .skill-fill { height: 100%; background: var(--grad-main); width: 0; transition: width 1s cubic-bezier(0.4, 0, 0.2, 1); }
+
+    /* Projects */
+    .project-card {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      transition: 0.4s;
+    }
+    .project-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: var(--primary); }
+    
+    .project-cover {
+      height: 180px;
+      background: var(--surface2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-cover i { font-size: 4rem; color: var(--text-dim); transition: 0.4s; }
+    .project-card:hover .project-cover i { color: #fff; transform: scale(1.1) rotate(-5deg); }
+    .project-cover::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, var(--surface), transparent);
+    }
+    
+    .project-body { padding: 1.5rem; }
+    .project-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
+    .tag {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 99px;
+      background: rgba(255,255,255,0.05);
+      color: var(--text-muted);
+      border: 1px solid transparent;
+    }
+    .project-card:hover .tag { border-color: var(--primary); color: var(--primary); background: var(--primary-dim); }
+
+    /* Career Timeline */
+    .timeline-item {
+      position: relative;
+      padding-left: 2rem;
+      border-left: 2px solid var(--border);
+      padding-bottom: 2.5rem;
+    }
+    .timeline-item:last-child { border-left-color: transparent; }
+    .timeline-dot {
+      position: absolute; left: -6px; top: 0;
+      width: 10px; height: 10px;
+      background: var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px var(--bg);
+    }
+    .timeline-date { font-family: var(--font-code); font-size: 0.85rem; color: var(--primary); margin-bottom: 0.5rem; display: block; }
+
+    /* Folders (Donation) */
+    .folder-grid { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 2rem; }
+    .folder-wrapper { perspective: 1000px; cursor: pointer; }
+    .folder {
+      width: 140px; height: 110px;
+      position: relative;
+      transition: 0.3s;
+    }
+    .folder-back {
+      position: absolute; inset: 0;
+      background: #2d3748;
+      border-radius: 8px;
+      transform: rotateX(-10deg);
+      transform-origin: bottom;
+      transition: 0.4s;
+    }
+    .folder-front {
+      position: absolute; inset: 0;
+      background: #4a5568;
+      border-radius: 8px;
+      transform-origin: bottom;
+      transition: 0.4s;
+      z-index: 10;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 600; color: rgba(255,255,255,0.8);
+    }
+    .folder-paper {
+      position: absolute; width: 90%; height: 90%; left: 5%; bottom: 5%;
+      background: #fff; border-radius: 4px;
+      transition: 0.4s;
+      display: flex; align-items: center; justify-content: center; flex-direction: column;
+      padding: 1rem; text-align: center;
+      color: #333;
+    }
+    .folder-wrapper:hover .folder-front { transform: rotateX(-40deg); }
+    .folder-wrapper:hover .folder-paper { transform: translateY(-40px); }
+    .folder-wrapper:hover .folder { transform: translateY(10px); }
+
+    /* Footer */
+    footer { text-align: center; padding: 4rem 0; color: var(--text-muted); font-size: 0.9rem; }
+    .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem; }
+    .social-links a { font-size: 1.5rem; color: var(--text-muted); }
+    .social-links a:hover { color: var(--primary); transform: translateY(-3px); }
+
+    /* New Components */
+    /* Removed old tech-level and btn-cv styles to avoid conflict */
+    
+    /* Responsive */
+    @media (max-width: 968px) {
+      h1 { font-size: 2.5rem; }
+      .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
+      .hero-content { order: 2; }
+      .lanyard-wrapper { order: 1; height: 350px; }
+      .grid-2 { grid-template-columns: 1fr; }
+      h2::after { left: 50%; transform: translateX(-50%); }
+      .nav-links { display: none; } /* Simple hide for now, JS handles mobile menu */
+      .hamburger { display: block; }
+      .nav-links.active {
+        display: flex; flex-direction: column; position: fixed;
+        top: 60px; left: 0; right: 0; background: var(--surface);
+        padding: 2rem; border-bottom: 1px solid var(--border);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="console-bg"></canvas>
+  <canvas id="matrix-bg"></canvas>
+
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <div class="logo">FELIPE<span>.TI/DEV</span></div>
+      <div class="hamburger"><i class='bx bx-menu'></i></div>
+      <ul class="nav-links">
+        <li><a href="#inicio" class="active">Início</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#habilidades">Skills</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="inicio">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <span class="hero-tag">Disponível para Projetos</span>
+          <h1>Transformando Dados em <span style="color:var(--primary)">Inteligência</span></h1>
+          <span class="hero-role" id="typed-text"></span>
+          <p>Especialista em Python, Engenharia de Dados e Back-end. Unindo a disciplina militar com a inovação tecnológica para criar soluções robustas e escaláveis.</p>
+          <div style="display:flex; gap:1rem; flex-wrap:wrap; justify-content: inherit;">
+            <a href="#projetos" class="btn">Ver Projetos <i class='bx bx-right-arrow-alt'></i></a>
+            <a href="#contato" class="btn btn-outline">Entrar em Contato</a>
+          </div>
+        </div>
+        
+        <div class="lanyard-wrapper">
+          <div class="badge-container" id="badge">
+            <div class="badge-card">
+              <!-- CV Button Icon -->
+              <a href="./curriculo.pdf" download class="btn-cv-icon" title="Baixar Currículo">
+                <i class='bx bx-download'></i>
+              </a>
+
+              <div class="badge-content">
+                <div class="badge-photo" style="position:relative">
+                  <img src="./Imagem/avatar.png" alt="Felipe Spínola">
+                  <div style="position:absolute; bottom:15px; right:15px; width:22px; height:22px; background:#10b981; border-radius:50%; border:3px solid #1a1a1a;" title="Status: Online"></div>
+                </div>
+                
+                <h3 style="margin-bottom:0.2rem; display:flex; align-items:center; gap:0.5rem; justify-content:center">
+                  Felipe da Silva Spínola 
+                  <i class='bx bxs-badge-check' style="color:#3b82f6; font-size:1rem;" title="Verificado"></i>
+                </h3>
+                <span style="font-size:0.8rem; color:var(--text-muted); font-family:var(--font-code)">ID: TI-Sênior</span>
+                <span style="font-size:0.8rem; color:var(--text-muted); margin-top:0.3rem; display:block"><i class='bx bx-map'></i> Positivo S+ Br</span>
+
+                <div style="margin-top:2rem; width:100%">
+                  <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.5rem; color:var(--text-muted)">
+                    <span>Nível</span>
+                    <span>Sênior</span>
+                  </div>
+                  <div style="height:4px; background:#333; border-radius:2px; overflow:hidden">
+                    <div style="width:85%; height:100%; background:var(--primary)"></div>
+                  </div>
+                </div>
+                
+                <div style="margin-top:auto; width:100%; display:flex; justify-content:space-between; align-items:center; color:var(--text-dim); font-size:0.85rem; padding-top:1rem; border-top:1px solid rgba(255,255,255,0.05)">
+                   <span style="font-family:var(--font-code)">EXP: 4 Anos</span>
+                   <i class='bx bx-barcode' style="font-size:1.8rem"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sobre & Carreira -->
+    <section id="sobre">
+      <div class="container">
+        <h2>Minha Jornada</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3><i class='bx bx-user' style="color:var(--primary); margin-right:0.5rem"></i> Quem Sou</h3>
+            <p>Profissional híbrido com sólida base técnica. Minha transição do Exército Brasileiro para a Tecnologia me trouxe uma perspectiva única sobre disciplina, processos e segurança.</p>
+            <p>Hoje, atuo desenvolvendo pipelines de dados, APIs performáticas e dashboards que auxiliam na tomada de decisão estratégica.</p>
+            <div style="margin-top:auto">
+              <div style="display:flex; gap:2rem; text-align:center">
+                <div>
+                  <h4 style="font-size:1.8rem; color:var(--primary)">5+</h4>
+                  <span style="font-size:0.85rem; color:var(--text-muted)">Anos Exp.</span>
+                </div>
+                <div>
+                  <h4 style="font-size:1.8rem; color:var(--secondary)">20+</h4>
+                  <span style="font-size:0.85rem; color:var(--text-muted)">Projetos</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card">
+            <h3><i class='bx bx-briefcase' style="color:var(--secondary); margin-right:0.5rem"></i> Experiência</h3>
+            <div style="margin-top:1.5rem">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="timeline-date">Nov 2025 - Atual</span>
+                <h4>Técnico de Atendimento Sr.</h4>
+                <span style="color:var(--text-muted); font-size:0.9rem">Positivo S+</span>
+                <p style="margin-top:0.5rem; font-size:0.9rem; margin-bottom:0">Sustentação de infraestrutura crítica e suporte avançado.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot" style="background:var(--text-dim)"></div>
+                <span class="timeline-date">2019 - 2023</span>
+                <h4>Gestão de Dados & TI</h4>
+                <span style="color:var(--text-muted); font-size:0.9rem">Exército Brasileiro</span>
+                <p style="margin-top:0.5rem; font-size:0.9rem; margin-bottom:0">Liderança em processos de segurança e automação de relatórios.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projetos -->
+    <section id="projetos">
+      <div class="container">
+        <h2 style="text-align:center; margin-bottom: 2rem">Projetos em Destaque</h2>
+        
+        <div class="grid-2">
+          <!-- Personal Projects -->
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem">
+              <h3>Pessoais</h3>
+              <div class="project-nav-controls">
+                <button id="personal-prev" class="btn-outline" style="padding:0.2rem 0.5rem" disabled><i class='bx bx-chevron-left'></i></button>
+                <span id="personal-counter" style="font-family:var(--font-code); font-size:0.9rem; margin:0 0.5rem">01/06</span>
+                <button id="personal-next" class="btn-outline" style="padding:0.2rem 0.5rem"><i class='bx bx-chevron-right'></i></button>
+              </div>
+            </div>
+            <div id="personal-project-display">
+              <!-- Content injected by JS -->
+            </div>
+          </div>
+
+          <!-- Professional Projects -->
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem">
+              <h3>Profissionais</h3>
+              <div class="project-nav-controls">
+                <button id="professional-prev" class="btn-outline" style="padding:0.2rem 0.5rem" disabled><i class='bx bx-chevron-left'></i></button>
+                <span id="professional-counter" style="font-family:var(--font-code); font-size:0.9rem; margin:0 0.5rem">01/04</span>
+                <button id="professional-next" class="btn-outline" style="padding:0.2rem 0.5rem"><i class='bx bx-chevron-right'></i></button>
+              </div>
+            </div>
+            <div id="professional-project-display">
+              <!-- Content injected by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Habilidades (Interativo) -->
+    <section id="habilidades">
+      <div class="container">
+        <h2 style="text-align:center">Tech Stack</h2>
+        <p style="text-align:center; color:var(--text-muted); margin-bottom:2rem">Clique para ver detalhes. Use os filtros para navegar.</p>
+        
+        <!-- Skill Display Area -->
+        <div class="skill-display" id="skill-display">
+           <!-- Content injected by JS -->
+        </div>
+
+        <!-- Filters -->
+        <div class="skill-filter" style="display:flex; justify-content:center; gap:0.5rem; margin-bottom:2rem; flex-wrap:wrap">
+          <button data-level="all" class="btn-outline active" style="border-radius:99px; padding:0.4rem 1rem; font-size:0.85rem">Todas</button>
+          <button data-level="expert" class="btn-outline" style="border-radius:99px; padding:0.4rem 1rem; font-size:0.85rem">Expert</button>
+          <button data-level="avancado" class="btn-outline" style="border-radius:99px; padding:0.4rem 1rem; font-size:0.85rem">Avançado</button>
+          <button data-level="intermediario" class="btn-outline" style="border-radius:99px; padding:0.4rem 1rem; font-size:0.85rem">Intermediário</button>
+        </div>
+        
+        <!-- Grid -->
+        <div class="tech-grid" id="tech-grid">
+          <div class="tech-item" data-skill="Python" data-level="95" data-category="expert"><i class='bx bxl-python'></i><span>Python</span><div class="tech-level">Expert (95%)</div></div>
+          <div class="tech-item" data-skill="SQL" data-level="90" data-category="expert"><i class='bx bx-data'></i><span>SQL</span><div class="tech-level">Expert (90%)</div></div>
+          <div class="tech-item" data-skill="PostgreSQL" data-level="85" data-category="avancado"><i class='bx bxl-postgresql'></i><span>PostgreSQL</span><div class="tech-level">Avançado (85%)</div></div>
+          <div class="tech-item" data-skill="Azure" data-level="80" data-category="avancado"><i class='bx bxl-microsoft'></i><span>Azure</span><div class="tech-level">Avançado (80%)</div></div>
+          <div class="tech-item" data-skill="Docker" data-level="75" data-category="intermediario"><i class='bx bxl-docker'></i><span>Docker</span><div class="tech-level">Intermediário (75%)</div></div>
+          <div class="tech-item" data-skill="Git" data-level="90" data-category="expert"><i class='bx bxl-git'></i><span>Git</span><div class="tech-level">Expert (90%)</div></div>
+          <div class="tech-item" data-skill="Power BI" data-level="85" data-category="avancado"><i class='bx bx-bar-chart-alt-2'></i><span>Power BI</span><div class="tech-level">Avançado (85%)</div></div>
+          <div class="tech-item" data-skill="Django" data-level="80" data-category="avancado"><i class='bx bxl-django'></i><span>Django</span><div class="tech-level">Avançado (80%)</div></div>
+          <div class="tech-item" data-skill="Flask" data-level="85" data-category="avancado"><i class='bx bxl-flask'></i><span>Flask</span><div class="tech-level">Avançado (85%)</div></div>
+          <div class="tech-item" data-skill="FastAPI" data-level="80" data-category="avancado"><i class='bx bx-server'></i><span>FastAPI</span><div class="tech-level">Avançado (80%)</div></div>
+          <div class="tech-item" data-skill="Airflow" data-level="75" data-category="intermediario"><i class='bx bx-cloud'></i><span>Airflow</span><div class="tech-level">Intermediário (75%)</div></div>
+          <div class="tech-item" data-skill="DBT" data-level="70" data-category="intermediario"><i class='bx bx-chip'></i><span>DBT</span><div class="tech-level">Intermediário (70%)</div></div>
+          <div class="tech-item" data-skill="MongoDB" data-level="75" data-category="intermediario"><i class='bx bxl-mongodb'></i><span>MongoDB</span><div class="tech-level">Intermediário (75%)</div></div>
+          <div class="tech-item" data-skill="Pandas" data-level="90" data-category="expert"><i class='bx bx-stats'></i><span>Pandas</span><div class="tech-level">Expert (90%)</div></div>
+          <div class="tech-item" data-skill="NumPy" data-level="85" data-category="avancado"><i class='bx bx-math'></i><span>NumPy</span><div class="tech-level">Avançado (85%)</div></div>
+          <div class="tech-item" data-skill="JavaScript" data-level="80" data-category="avancado"><i class='bx bxl-javascript'></i><span>JavaScript</span><div class="tech-level">Avançado (80%)</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certificados -->
+    <section id="certificados">
+      <div class="container">
+        <h2 style="text-align:center; margin-bottom:1rem">Certificações</h2>
+        
+        <div style="display:flex; justify-content:center; align-items:center; gap:1rem; margin-bottom:2rem">
+          <button id="cert-prev" class="btn-outline" disabled>← Anterior</button>
+          <span id="cert-counter" style="font-family:var(--font-code); color:var(--text-muted)">01/03</span>
+          <button id="cert-next" class="btn-outline">Próximo →</button>
+        </div>
+        
+        <div class="grid-3" id="cert-display" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.5rem">
+          <!-- Content injected by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Apoio / Doação -->
+    <section id="contato">
+      <div class="container">
+        <h2>Vamos Conversar?</h2>
+        <p style="text-align:center; max-width:600px; margin:0 auto 3rem auto">Estou sempre aberto a novas oportunidades e parcerias. Se você gostou do meu trabalho, considere apoiar ou entre em contato.</p>
+        
+        <div class="folder-grid">
+          <!-- Suporte -->
+          <div class="folder-wrapper" onclick="window.location.href='mailto:mrfelipefss@gmail.com?subject=Suporte/Dúvida'">
+            <div class="folder">
+              <div class="folder-back"></div>
+              <div class="folder-paper">
+                <i class='bx bx-support' style="font-size:2rem; color:#10b981"></i>
+                <span style="font-weight:700; margin-top:0.5rem">Suporte</span>
+                <span style="font-size:0.6rem; color:#666; line-height:1.2; margin-top:0.2rem">Duvidas?<br>Solicitações?</span>
+              </div>
+              <div class="folder-front">Suporte</div>
+            </div>
+          </div>
+
+          <!-- LinkedIn -->
+          <div class="folder-wrapper" onclick="window.open('https://linkedin.com/in/seu-perfil', '_blank')">
+            <div class="folder">
+              <div class="folder-back"></div>
+              <div class="folder-paper">
+                <i class='bx bxl-linkedin' style="font-size:2rem; color:#0077b5"></i>
+                <span style="font-weight:700; margin-top:0.5rem">LinkedIn</span>
+                <span style="font-size:0.7rem; color:#666">Conecte-se</span>
+              </div>
+              <div class="folder-front">LinkedIn</div>
+            </div>
+          </div>
+
+          <!-- GitHub -->
+          <div class="folder-wrapper" onclick="window.open('https://github.com/seu-usuario', '_blank')">
+            <div class="folder">
+              <div class="folder-back"></div>
+              <div class="folder-paper">
+                <i class='bx bxl-github' style="font-size:2rem; color:#333"></i>
+                <span style="font-weight:700; margin-top:0.5rem">GitHub</span>
+                <span style="font-size:0.7rem; color:#666">Código</span>
+              </div>
+              <div class="folder-front">GitHub</div>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="folder-wrapper" onclick="copyToClipboard('mrfelipefss@gmail.com', 'E-mail copiado!')">
+            <div class="folder">
+              <div class="folder-back"></div>
+              <div class="folder-paper">
+                <i class='bx bx-envelope' style="font-size:2rem; color:#3b82f6"></i>
+                <span style="font-weight:700; margin-top:0.5rem">Email</span>
+                <span style="font-size:0.7rem; color:#666">Contato Pro</span>
+              </div>
+              <div class="folder-front">Email</div>
+            </div>
+          </div>
+          
+          <!-- Telefone -->
+          <div class="folder-wrapper" onclick="copyToClipboard('+5511999999999', 'Telefone copiado!')">
+            <div class="folder">
+              <div class="folder-back"></div>
+              <div class="folder-paper">
+                <i class='bx bx-phone' style="font-size:2rem; color:#25D366"></i>
+                <span style="font-weight:700; margin-top:0.5rem">Telefone</span>
+                <span style="font-size:0.7rem; color:#666">WhatsApp</span>
+              </div>
+              <div class="folder-front">Telefone</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="social-links">
+        <a href="#"><i class='bx bxl-linkedin'></i></a>
+        <a href="#"><i class='bx bxl-github'></i></a>
+        <a href="#"><i class='bx bxl-instagram'></i></a>
+      </div>
+      <p>&copy; 2025 Felipe Spínola. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    // --- Typing Effect ---
+    const roles = ["Analista de Dados", "Desenvolvedor Python", "Engenheiro de Dados"];
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typedTextSpan = document.getElementById("typed-text");
+
+    function type() {
+      const currentRole = roles[roleIndex];
+      if (isDeleting) {
+        typedTextSpan.textContent = currentRole.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        typedTextSpan.textContent = currentRole.substring(0, charIndex + 1);
+        charIndex++;
+      }
+
+      if (!isDeleting && charIndex === currentRole.length) {
+        isDeleting = true;
+        setTimeout(type, 2000);
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+        setTimeout(type, 500);
+      } else {
+        setTimeout(type, isDeleting ? 50 : 100);
+      }
+    }
+    document.addEventListener("DOMContentLoaded", type);
+
+    // --- New Features Logic (Projects, Skills, Certs) ---
+    (function() {
+        // --- Projects Data & Logic ---
+        const personalProjects = [
+            {
+                icon: 'bx-building',
+                gradient: 'linear-gradient(135deg,#0ea5a4,#2563eb)',
+                title: 'Simulador Bancário',
+                desc: 'Sistema completo de operações bancárias com interface web moderna.',
+                tags: ['JavaScript','Python','Flask'],
+                status: 'complete'
+            },
+            {
+                icon: 'bx-credit-card',
+                gradient: 'linear-gradient(135deg,#2563eb,#22c55e)',
+                title: 'Validador de Cartão',
+                desc: 'Algoritmo de Luhn com identificação de bandeira e validação em tempo real.',
+                tags: ['JavaScript','Algoritmos','UX'],
+                status: 'complete'
+            },
+            {
+                icon: 'bx-microphone',
+                gradient: 'linear-gradient(135deg,#ec4899,#db2777)',
+                title: 'Podcast Gen AI',
+                desc: 'Gerador de podcasts com IA generativa e síntese de voz.',
+                tags: ['Python','IA','APIs'],
+                status: 'progress'
+            },
+            {
+                icon: 'bx-bot',
+                gradient: 'linear-gradient(135deg,#8b5cf6,#6366f1)',
+                title: 'ChatBot Assistente',
+                desc: 'Assistente virtual com NLP para atendimento automatizado.',
+                tags: ['Python','NLP','Flask'],
+                status: 'progress'
+            },
+            {
+                icon: 'bx-lock-alt',
+                gradient: 'linear-gradient(135deg,#ef4444,#b91c1c)',
+                title: 'Projeto Confidencial',
+                desc: 'Sistema de criptografia e segurança de dados sensíveis.',
+                tags: ['Python','Segurança','Crypto'],
+                status: 'secret'
+            },
+            {
+                icon: 'bx-chart',
+                gradient: 'linear-gradient(135deg,#f59e0b,#d97706)',
+                title: 'Dashboard Analytics',
+                desc: 'Painel de métricas em tempo real com visualizações interativas.',
+                tags: ['JavaScript','D3.js','WebSocket'],
+                status: 'progress'
+            }
+        ];
+
+        const professionalProjects = [
+            {
+                icon: 'bxl-microsoft',
+                gradient: 'linear-gradient(135deg,#0078d4,#003b6f)',
+                title: 'Azure AI Lab',
+                desc: 'Integração completa de serviços cognitivos Azure: Speech, Language e Vision.',
+                tags: ['Azure','IA','Python'],
+                status: 'complete'
+            },
+            {
+                icon: 'bx-network-chart',
+                gradient: 'linear-gradient(135deg,#1e3a8a,#0ea5a4)',
+                title: 'API de Inventário',
+                desc: 'Sistema CRUD robusto com autenticação JWT e documentação OpenAPI.',
+                tags: ['Django','API','PostgreSQL'],
+                status: 'complete'
+            },
+            {
+                icon: 'bx-line-chart',
+                gradient: 'linear-gradient(135deg,#8b5cf6,#7c3aed)',
+                title: 'Pipeline ETL Corporativo',
+                desc: 'Pipeline de dados escalável processando 1M+ registros/dia.',
+                tags: ['Python','Airflow','Azure'],
+                status: 'complete'
+            },
+            {
+                icon: 'bx-shield',
+                gradient: 'linear-gradient(135deg,#dc2626,#991b1b)',
+                title: 'Sistema Estratégico',
+                desc: 'Plataforma de análise de dados classificados e inteligência.',
+                tags: ['Confidencial'],
+                status: 'secret'
+            }
+        ];
+
+        let personalIndex = 0;
+        let professionalIndex = 0;
+
+        function renderProject(project) {
+            // Using new classes: project-card, project-cover, project-body, project-tags, tag
+            return `
+                <div class="project-card">
+                    <div class="project-cover" style="background:${project.gradient}">
+                        <i class='bx ${project.icon}'></i>
+                    </div>
+                    <div class="project-body">
+                        <h3 style="margin-bottom:0.5rem">${project.title}</h3>
+                        <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:1rem">${project.desc}</p>
+                        <div class="project-tags">
+                            ${project.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function updateProjects() {
+            const pDisplay = document.getElementById('personal-project-display');
+            const profDisplay = document.getElementById('professional-project-display');
+            
+            if(pDisplay) {
+                pDisplay.innerHTML = renderProject(personalProjects[personalIndex]);
+                document.getElementById('personal-counter').textContent = `${String(personalIndex + 1).padStart(2,'0')}/${String(personalProjects.length).padStart(2,'0')}`;
+                document.getElementById('personal-prev').disabled = personalIndex === 0;
+                document.getElementById('personal-next').disabled = personalIndex === personalProjects.length - 1;
+            }
+            
+            if(profDisplay) {
+                profDisplay.innerHTML = renderProject(professionalProjects[professionalIndex]);
+                document.getElementById('professional-counter').textContent = `${String(professionalIndex + 1).padStart(2,'0')}/${String(professionalProjects.length).padStart(2,'0')}`;
+                document.getElementById('professional-prev').disabled = professionalIndex === 0;
+                document.getElementById('professional-next').disabled = professionalIndex === professionalProjects.length - 1;
+            }
+        }
+
+        // Event Listeners for Projects
+        const pPrev = document.getElementById('personal-prev');
+        if(pPrev) {
+            pPrev.addEventListener('click', () => { if(personalIndex > 0) { personalIndex--; updateProjects(); } });
+            document.getElementById('personal-next').addEventListener('click', () => { if(personalIndex < personalProjects.length - 1) { personalIndex++; updateProjects(); } });
+            document.getElementById('professional-prev').addEventListener('click', () => { if(professionalIndex > 0) { professionalIndex--; updateProjects(); } });
+            document.getElementById('professional-next').addEventListener('click', () => { if(professionalIndex < professionalProjects.length - 1) { professionalIndex++; updateProjects(); } });
+            updateProjects();
+        }
+
+        // --- Skills Logic ---
+        const techItems = document.querySelectorAll('.tech-item');
+        const skillDisplay = document.getElementById('skill-display');
+        
+        // Filter Logic
+        document.querySelectorAll('.skill-filter button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.skill-filter button').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const level = btn.getAttribute('data-level');
+                techItems.forEach(item => {
+                    if(level === 'all' || item.getAttribute('data-category') === level) {
+                        item.style.display = 'flex'; // Restore flex display
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Selection Logic
+        techItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Toggle selection
+                item.classList.toggle('selected');
+                
+                // Update Display Area
+                const selectedItems = document.querySelectorAll('.tech-item.selected');
+                if(selectedItems.length === 0) {
+                    skillDisplay.style.display = 'none';
+                } else {
+                    skillDisplay.style.display = 'block';
+                    let html = '<div style="display:grid; gap:1rem;">';
+                    selectedItems.forEach(sel => {
+                        const name = sel.getAttribute('data-skill');
+                        const level = sel.getAttribute('data-level');
+                        const cat = sel.getAttribute('data-category');
+                        let color = '#60a5fa';
+                        if(cat === 'intermediario') color = '#22c55e';
+                        if(cat === 'avancado') color = '#fb923c';
+                        if(cat === 'expert') color = '#a855f7';
+                        
+                        html += `
+                            <div>
+                                <div style="display:flex; justify-content:space-between; margin-bottom:0.3rem">
+                                    <span style="font-weight:600">${name}</span>
+                                    <span style="color:${color}; font-size:0.85rem">${cat.toUpperCase()} (${level}%)</span>
+                                </div>
+                                <div class="skill-track">
+                                    <div class="skill-fill" style="width:${level}%; background:${color}"></div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    html += '</div>';
+                    skillDisplay.innerHTML = html;
+                }
+            });
+        });
+
+        // --- Certificates Logic ---
+        const certificates = [
+            [
+                { title: 'Azure AI Fundamentals', org: 'Microsoft', icon: 'bxl-microsoft', gradient: 'linear-gradient(135deg,#0078d4,#50e6ff)' },
+                { title: 'Azure Data Fundamentals', org: 'Microsoft', icon: 'bxl-microsoft', gradient: 'linear-gradient(135deg,#0078d4,#00bcf2)' },
+                { title: 'Python para Data Science', org: 'IBM', icon: 'bxl-python', gradient: 'linear-gradient(135deg,#3776ab,#ffd43b)' }
+            ],
+            [
+                { title: 'SQL Avançado', org: 'DataCamp', icon: 'bx-data', gradient: 'linear-gradient(135deg,#03ef62,#0ac7a0)' },
+                { title: 'Docker Essentials', org: 'Docker', icon: 'bxl-docker', gradient: 'linear-gradient(135deg,#0db7ed,#2496ed)' },
+                { title: 'Git & GitHub', org: 'LinkedIn Learning', icon: 'bxl-git', gradient: 'linear-gradient(135deg,#f34f29,#f05033)' }
+            ],
+            [
+                { title: 'Power BI Specialist', org: 'Microsoft', icon: 'bx-bar-chart-alt-2', gradient: 'linear-gradient(135deg,#f2c811,#f28a0a)' },
+                { title: 'Machine Learning Foundation', org: 'Coursera', icon: 'bx-brain', gradient: 'linear-gradient(135deg,#6366f1,#8b5cf6)' },
+                { title: 'Cybersecurity Fundamentals', org: 'IBM', icon: 'bx-shield', gradient: 'linear-gradient(135deg,#ef4444,#dc2626)' }
+            ]
+        ];
+        
+        let certPage = 0;
+        
+        function renderCertificates() {
+            const display = document.getElementById('cert-display');
+            if(!display) return;
+            
+            display.innerHTML = certificates[certPage].map(cert => `
+                <div class="project-card">
+                    <div class="project-cover" style="background:${cert.gradient}; height:140px">
+                        <i class='bx ${cert.icon}' style="font-size:3rem"></i>
+                    </div>
+                    <div class="project-body" style="text-align:center">
+                        <h3 style="font-size:1rem; margin-bottom:0.3rem">${cert.title}</h3>
+                        <p style="color:var(--text-muted); font-size:0.85rem">${cert.org}</p>
+                    </div>
+                </div>
+            `).join('');
+            
+            document.getElementById('cert-counter').textContent = `${String(certPage + 1).padStart(2, '0')}/${String(certificates.length).padStart(2, '0')}`;
+            document.getElementById('cert-prev').disabled = certPage === 0;
+            document.getElementById('cert-next').disabled = certPage === certificates.length - 1;
+        }
+        
+        const cPrev = document.getElementById('cert-prev');
+        if(cPrev) {
+            cPrev.addEventListener('click', () => { if(certPage > 0) { certPage--; renderCertificates(); } });
+            document.getElementById('cert-next').addEventListener('click', () => { if(certPage < certificates.length - 1) { certPage++; renderCertificates(); } });
+            renderCertificates();
+        }
+    })();
+
+    // --- Badge Physics (Simplified for Performance) ---
+    const badge = document.getElementById('badge');
+    let isDragging = false;
+    let startX;
+    let currentRotation = 0;
+
+    if(badge) {
+      badge.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.clientX;
+        badge.style.cursor = 'grabbing';
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        const delta = e.clientX - startX;
+        currentRotation = delta * 0.5;
+        badge.style.transform = `rotateY(${currentRotation}deg) rotateX(${delta * 0.1}deg)`;
+      });
+
+      window.addEventListener('mouseup', () => {
+        isDragging = false;
+        badge.style.cursor = 'grab';
+        badge.style.transition = 'transform 1s ease-out';
+        badge.style.transform = 'rotateY(0deg) rotateX(0deg)';
+        setTimeout(() => { badge.style.transition = ''; }, 1000);
+      });
+    }
+
+    // --- Utils ---
+    function copyToClipboard(text, msg) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert(msg);
+      });
+    }
+
+    // --- Mobile Menu ---
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if(hamburger) {
+        hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        const icon = hamburger.querySelector('i');
+        if(navLinks.classList.contains('active')) {
+            icon.classList.remove('bx-menu');
+            icon.classList.add('bx-x');
+        } else {
+            icon.classList.remove('bx-x');
+            icon.classList.add('bx-menu');
+        }
+        });
+    }
+
+    // --- Navbar Scroll Effect ---
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // --- Matrix Rain (Optimized) ---
+    const canvas = document.getElementById('matrix-bg');
+    if(canvas) {
+        const ctx = canvas.getContext('2d');
+        
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+        
+        const cols = Math.floor(width / 20);
+        const ypos = Array(cols).fill(0);
+        
+        function matrix() {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(0, 0, width, height);
+        
+        ctx.fillStyle = '#0f0';
+        ctx.font = '15pt monospace';
+        
+        ypos.forEach((y, ind) => {
+            const text = String.fromCharCode(Math.random() * 128);
+            const x = ind * 20;
+            ctx.fillText(text, x, y);
+            if (y > 100 + Math.random() * 10000) ypos[ind] = 0;
+            else ypos[ind] = y + 20;
+        });
+        }
+        setInterval(matrix, 50);
+        
+        window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        });
+    }
+  </script>
+</body>
+</html>

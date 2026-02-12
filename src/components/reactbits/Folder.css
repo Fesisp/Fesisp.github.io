@@ -1,0 +1,105 @@
+.folder {
+  position: relative;
+  width: 200px;
+  height: 150px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.folder:hover {
+  transform: scale(1.05);
+}
+
+.folder__back {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 90%;
+  background-color: var(--folder-back-color);
+  border-radius: 0 8px 8px 8px;
+  transition: transform 0.3s ease;
+}
+
+.folder__back::before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: 0;
+  width: 40%;
+  height: 15px;
+  background-color: var(--folder-back-color);
+  border-radius: 8px 8px 0 0;
+}
+
+.folder__front {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--folder-color);
+  border-radius: 0 8px 8px 8px;
+  transform-origin: bottom;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 10;
+}
+
+.folder__front.right {
+  width: 100%;
+  height: 100%;
+  border-radius: 0 8px 8px 8px;
+  clip-path: polygon(0 0, 100% 20%, 100% 100%, 0 100%);
+  background-color: rgba(255, 255, 255, 0.1);
+  z-index: 11;
+}
+
+.folder.open .folder__front {
+  transform: rotateX(-30deg) translateY(5px);
+}
+
+.paper {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: calc(100% - 20px);
+  height: 85%;
+  background-color: white;
+  border-radius: 4px;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: #333;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.paper-1 {
+  background-color: var(--paper-1);
+  z-index: 3;
+}
+
+.paper-2 {
+  background-color: var(--paper-2);
+  z-index: 2;
+}
+
+.paper-3 {
+  background-color: var(--paper-3);
+  z-index: 1;
+}
+
+.folder.open .paper-1 {
+  transform: translate(calc(var(--magnet-x) - 140px), calc(var(--magnet-y) - 40px)) rotate(-10deg);
+}
+
+.folder.open .paper-2 {
+  transform: translate(var(--magnet-x), calc(var(--magnet-y) - 140px)) rotate(0deg);
+  z-index: 4;
+}
+
+.folder.open .paper-3 {
+  transform: translate(calc(var(--magnet-x) + 140px), calc(var(--magnet-y) - 40px)) rotate(10deg);
+}

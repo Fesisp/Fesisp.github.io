@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FesisBank - Simulador Bancário</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --accent-light: rgba(59, 130, 246, 0.1);
+      --muted: #94a3b8;
+      --text: #e2e8f0;
+      --error: #ef4444;
+      --success: #22c55e;
+      --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      --gradient-primary: linear-gradient(135deg, #3b82f6, #2563eb);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(59, 130, 246, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gradient-primary);
+      opacity: 0.7;
+    }
+
+    h1 {
+      color: var(--text);
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    h1 i {
+      color: var(--accent);
+      font-size: 2rem;
+    }
+
+    p.lead {
+      color: var(--muted);
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 2rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.35rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.65rem;
+      border-radius: 8px;
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      background: rgba(15, 23, 42, 0.6);
+      color: var(--text);
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    select {
+      cursor: pointer;
+    }
+
+    button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1rem;
+      border-radius: 8px;
+      border: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: var(--gradient-primary);
+      color: white;
+    }
+
+    button i {
+      font-size: 1.1rem;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      background: rgba(59, 130, 246, 0.1);
+      border-color: var(--accent);
+    }
+
+    .meta {
+      background: rgba(15, 23, 42, 0.6);
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+
+    .meta h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 0.5rem 0;
+      text-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    }
+
+    .history {
+      background: rgba(15, 23, 42, 0.6);
+      padding: 1rem;
+      border-radius: 12px;
+      height: 300px;
+      overflow: auto;
+      border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+
+    .history li {
+      padding: 0.5rem;
+      border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+      font-size: 0.9rem;
+    }
+
+    .history li:last-child {
+      border-bottom: none;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .row {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.75rem;
+    }
+
+    .note {
+      margin-top: 0.75rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      background: rgba(15, 23, 42, 0.6);
+      padding: 0.75rem;
+      border-radius: 8px;
+      border: 1px solid rgba(59, 130, 246, 0.1);
+    }
+
+    footer {
+      margin-top: 2rem;
+      text-align: right;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(59, 130, 246, 0.1);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    a:hover {
+      color: var(--accent-hover);
+    }
+
+    @media (max-width: 800px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .history {
+        height: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1><i class='bx bx-bank'></i> FesisBank — Simulador</h1>
+      <p class="lead">Este simulador reproduz as regras do projeto: criação de cliente, criação de contas, depósitos, saques com limite e histórico de transações. Tudo armazenado no navegador.</p>
+
+      <div class="grid">
+        <div>
+          <div class="meta">
+            <div>
+              <p class="muted">Conta atual</p>
+              <h2 id="display-balance">R$ 0,00</h2>
+              <div id="account-meta" class="muted">Sem conta selecionada</div>
+            </div>
+          </div>
+
+          <div style="margin-top:1.5rem">
+            <h3 style="margin:0 0 1rem;color:var(--accent);font-size:1rem;display:flex;align-items:center;gap:0.5rem">
+              <i class='bx bx-user-plus'></i>Criar Cliente
+            </h3>
+            <label>CPF (11 dígitos)</label>
+            <input id="cpf" placeholder="12345678901" inputmode="numeric">
+            <label>Nome completo</label>
+            <input id="nome" placeholder="Fulano da Silva">
+            <label>Data nascimento</label>
+            <input id="nasc" placeholder="dd/mm/aaaa">
+            <label>Endereço</label>
+            <input id="endereco" placeholder="Rua, nº - Bairro - Cidade/UF">
+            <div class="actions">
+              <button id="btn-create-client"><i class='bx bx-plus'></i>Criar Cliente</button>
+              <button id="btn-select-client" class="btn-outline"><i class='bx bx-check'></i>Selecionar</button>
+            </div>
+            <p class="note">Após criar/selecionar cliente, crie uma conta para operar.</p>
+          </div>
+        </div>
+
+        <div>
+          <div style="display:flex;gap:1rem;align-items:start">
+            <div style="flex:1">
+              <label>Clientes cadastrados</label>
+              <select id="clients-list" size="4" style="height:120px"></select>
+            </div>
+            <div style="width:1px;height:120px;background:rgba(59, 130, 246, 0.1)"></div>
+            <div style="flex:1">
+              <label>Contas</label>
+              <select id="accounts-list" size="4" style="height:120px"></select>
+            </div>
+          </div>
+
+          <div style="margin-top:1.5rem;display:flex;gap:1rem;align-items:flex-end">
+            <div style="flex:1">
+              <label>Valor (R$)</label>
+              <input id="amount" type="number" min="0" step="0.01" placeholder="100.00">
+            </div>
+            <div style="width:220px;display:flex;flex-direction:column;gap:0.5rem">
+              <button id="btn-create-account"><i class='bx bx-plus-circle'></i>Criar Conta</button>
+              <div style="display:flex;gap:0.5rem">
+                <button id="btn-deposit" class="btn-outline"><i class='bx bx-up-arrow-alt'></i>Depositar</button>
+                <button id="btn-withdraw" class="btn-outline"><i class='bx bx-down-arrow-alt'></i>Sacar</button>
+              </div>
+              <button id="btn-extrato" class="btn-outline"><i class='bx bx-list-ul'></i>Extrato</button>
+            </div>
+          </div>
+
+          <div class="note">Regras: limite padrão R$500,00 por saque e máximo 3 saques por dia. Validações aplicadas.</div>
+          
+          <div class="history">
+            <strong>Histórico de ações</strong>
+            <ul id="events" style="list-style:none;padding:0.5rem 0 0;margin:0"></ul>
+          </div>
+        </div>
+      </div>
+
+      <footer><a href="../site.html"><i class='bx bx-arrow-back'></i> Voltar ao site</a></footer>
+    </div>
+  </div>
+
+  <script>
+    // Simple client-side model mirroring bank_account.py
+    class Historico {
+      constructor() {
+        this.transacoes = [];
+      }
+
+      adicionar(trans) {
+        this.transacoes.push(trans);
+      }
+    }
+
+    class Conta {
+      constructor(numero, cliente) {
+        this.numero = numero;
+        this.agencia = '0001';
+        this.cliente = cliente;
+        this.saldo = 0;
+        this.limite = 500;
+        this.limite_saques = 3;
+        this.historico = new Historico();
+      }
+    }
+
+    class Cliente {
+      constructor(cpf, nome, nasc, endereco) {
+        this.cpf = cpf;
+        this.nome = nome;
+        this.nasc = nasc;
+        this.endereco = endereco;
+        this.contas = [];
+      }
+    }
+
+    // State management
+    const clients = [];
+    const accounts = [];
+    let selectedClient = null;
+    let selectedAccount = null;
+
+    // Helper functions
+    function onlyDigits(s) {
+      return (s || '').replace(/\D+/g, '');
+    }
+
+    function fmt(v) {
+      return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    function ahora() {
+      return new Date().toLocaleString('pt-BR');
+    }
+
+    function pushEvent(text) {
+      const ul = document.getElementById('events');
+      const li = document.createElement('li');
+      li.textContent = text;
+      if (ul.firstChild) {
+        ul.insertBefore(li, ul.firstChild);
+      } else {
+        ul.appendChild(li);
+      }
+    }
+
+    // DOM references
+    const cpfEl = document.getElementById('cpf');
+    const nomeEl = document.getElementById('nome');
+    const nascEl = document.getElementById('nasc');
+    const endEl = document.getElementById('endereco');
+    const btnCreateClient = document.getElementById('btn-create-client');
+    const btnSelectClient = document.getElementById('btn-select-client');
+    const clientsList = document.getElementById('clients-list');
+    const accountsList = document.getElementById('accounts-list');
+    const btnCreateAccount = document.getElementById('btn-create-account');
+    const btnDeposit = document.getElementById('btn-deposit');
+    const btnWithdraw = document.getElementById('btn-withdraw');
+    const btnExtrato = document.getElementById('btn-extrato');
+    const amountEl = document.getElementById('amount');
+    const displayBalance = document.getElementById('display-balance');
+    const accountMeta = document.getElementById('account-meta');
+
+    // Disable account operations until client is selected
+    function updateAccountControlsState() {
+      const hasClient = selectedClient !== null;
+      btnCreateAccount.disabled = !hasClient;
+      btnDeposit.disabled = !selectedAccount;
+      btnWithdraw.disabled = !selectedAccount;
+      btnExtrato.disabled = !selectedAccount;
+      amountEl.disabled = !selectedAccount;
+      
+      [btnCreateAccount, btnDeposit, btnWithdraw, btnExtrato].forEach(btn => {
+        btn.style.opacity = btn.disabled ? '0.5' : '1';
+        btn.style.cursor = btn.disabled ? 'not-allowed' : 'pointer';
+      });
+      amountEl.style.opacity = amountEl.disabled ? '0.5' : '1';
+    }
+
+    // UI update functions
+    function refreshClients() {
+      clientsList.innerHTML = '';
+      clients.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c.cpf;
+        opt.text = `${c.nome} — ${c.cpf}`;
+        clientsList.appendChild(opt);
+      });
+    }
+
+    function refreshAccounts() {
+      accountsList.innerHTML = '';
+      // Only show accounts for the selected client
+      const clientAccounts = selectedClient ? selectedClient.contas : [];
+      clientAccounts.forEach(a => {
+        const opt = document.createElement('option');
+        opt.value = a.numero;
+        opt.text = `Ag:${a.agencia} | Conta:${a.numero}`;
+        accountsList.appendChild(opt);
+      });
+      if (clientAccounts.length === 0) {
+        const opt = document.createElement('option');
+        opt.disabled = true;
+        opt.text = selectedClient ? 'Cliente sem contas' : 'Selecione um cliente primeiro';
+        accountsList.appendChild(opt);
+      }
+    }
+
+    function setSelectedClientByCpf(cpf) {
+      selectedClient = clients.find(c => c.cpf === cpf) || null;
+      selectedAccount = null; // Clear selected account when changing clients
+      if (selectedClient) {
+        pushEvent(`${ahora()} - Cliente selecionado: ${selectedClient.nome}`);
+      }
+      refreshAccounts(); // Refresh accounts list when client changes
+      refreshDisplay();
+    }
+
+    function setSelectedAccountByNum(num) {
+      selectedAccount = accounts.find(a => String(a.numero) === String(num)) || null;
+      if (selectedAccount) {
+        pushEvent(`${ahora()} - Conta selecionada: ${selectedAccount.numero}`);
+      }
+      refreshDisplay();
+    }
+
+    function refreshDisplay() {
+      if (selectedAccount) {
+        displayBalance.textContent = fmt(selectedAccount.saldo);
+        accountMeta.textContent = `Ag ${selectedAccount.agencia} • Conta ${selectedAccount.numero} • Limite R$${selectedAccount.limite.toFixed(2)} • Saques rest: ${selectedAccount.limite_saques}`;
+      } else {
+        displayBalance.textContent = fmt(0);
+        accountMeta.textContent = selectedClient ? 'Selecione uma conta' : 'Selecione um cliente primeiro';
+      }
+      updateAccountControlsState();
+    }
+
+    // Event listeners
+    btnCreateClient.addEventListener('click', () => {
+      const cpf = onlyDigits(cpfEl.value || '');
+      if (cpf.length !== 11) {
+        alert('CPF deve ter 11 dígitos');
+        return;
+      }
+      if (clients.some(c => c.cpf === cpf)) {
+        alert('Cliente já existe');
+        return;
+      }
+      const nome = nomeEl.value.trim();
+      if (nome.length < 3) {
+        alert('Nome inválido');
+        return;
+      }
+      const nasc = nascEl.value.trim();
+      const endereco = endEl.value.trim();
+      
+      const cliente = new Cliente(cpf, nome, nasc, endereco);
+      clients.push(cliente);
+      pushEvent(`${ahora()} - Cliente criado: ${nome}`);
+      refreshClients();
+      
+      cpfEl.value = '';
+      nomeEl.value = '';
+      nascEl.value = '';
+      endEl.value = '';
+    });
+
+    btnSelectClient.addEventListener('click', () => {
+      const opt = clientsList.value;
+      if (!opt) {
+        alert('Selecione um cliente');
+        return;
+      }
+      setSelectedClientByCpf(opt);
+    });
+
+    btnCreateAccount.addEventListener('click', () => {
+      if (!selectedClient) {
+        alert('Selecione um cliente antes de criar conta');
+        return;
+      }
+      const numero = accounts.length + 1;
+      const conta = new Conta(numero, selectedClient);
+      selectedClient.contas.push(conta);
+      accounts.push(conta);
+      refreshAccounts();
+      pushEvent(`${ahora()} - Conta criada: ${conta.numero} para ${selectedClient.nome}`);
+      setSelectedAccountByNum(conta.numero);
+    });
+
+    clientsList.addEventListener('change', (e) => {
+      setSelectedClientByCpf(e.target.value);
+    });
+
+    accountsList.addEventListener('change', (e) => {
+      setSelectedAccountByNum(e.target.value);
+    });
+
+    btnDeposit.addEventListener('click', () => {
+      if (!selectedAccount) {
+        alert('Selecione uma conta');
+        return;
+      }
+      const v = parseFloat(amountEl.value);
+      if (!v || v <= 0) {
+        alert('Informe valor positivo');
+        return;
+      }
+      selectedAccount.saldo += v;
+      const t = `${ahora()} - Depósito: R$ ${v.toFixed(2)} (Saldo: R$ ${selectedAccount.saldo.toFixed(2)})`;
+      selectedAccount.historico.adicionar(t);
+      pushEvent(t);
+      refreshDisplay();
+      amountEl.value = '';
+    });
+
+    btnWithdraw.addEventListener('click', () => {
+      if (!selectedAccount) {
+        alert('Selecione uma conta');
+        return;
+      }
+      const v = parseFloat(amountEl.value);
+      if (!v || v <= 0) {
+        alert('Informe valor positivo');
+        return;
+      }
+      if (v > selectedAccount.saldo) {
+        alert('Saldo insuficiente');
+        return;
+      }
+      if (v > selectedAccount.limite) {
+        alert('Valor acima do limite por operação');
+        return;
+      }
+      if (selectedAccount.limite_saques <= 0) {
+        alert('Limite diário de saques atingido');
+        return;
+      }
+      selectedAccount.saldo -= v;
+      selectedAccount.limite_saques -= 1;
+      const t = `${ahora()} - Saque: R$ ${v.toFixed(2)} (Saldo: R$ ${selectedAccount.saldo.toFixed(2)})`;
+      selectedAccount.historico.adicionar(t);
+      pushEvent(t);
+      refreshDisplay();
+      amountEl.value = '';
+    });
+
+    btnExtrato.addEventListener('click', () => {
+      if (!selectedAccount) {
+        alert('Selecione uma conta');
+        return;
+      }
+      const lines = selectedAccount.historico.transacoes;
+      if (lines.length === 0) {
+        alert('Sem movimentações');
+      } else {
+        alert('Extrato:\n' + lines.join('\n'));
+      }
+    });
+
+    // Initialize demo data
+    (function seed() {
+      const cli = new Cliente('12345678901', 'João Silva', '01/01/1990', 'Rua A');
+      clients.push(cli);
+      const c = new Conta(1, cli);
+      c.saldo = 1000;
+      cli.contas.push(c);
+      accounts.push(c);
+      refreshClients();
+      refreshAccounts();
+      setSelectedClientByCpf(cli.cpf);
+    })();
+  </script>
+</body>
+</html>

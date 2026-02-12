@@ -1,0 +1,85 @@
+/* ======== CÓDIGO PARA ADICIONAR AO FINAL DE styles/globals.css ======== */
+
+/* Efeito de cursor piscando para o Hero */
+.typing-cursor {
+  animation: blink 1s step-end infinite;
+  color: var(--primary);
+  margin-left: 2px;
+  font-weight: 700;
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Estilos para o Grid de Skills Interativo (do site.html) */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.tech-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  transition: .3s;
+  cursor: pointer;
+}
+.tech-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+  box-shadow: 0 8px 24px rgba(0, 255, 65, 0.1);
+}
+.tech-item.selected {
+  border-color: var(--primary);
+  background: rgba(0, 255, 65, 0.05);
+  box-shadow: 0 0 24px rgba(0, 255, 65, 0.1);
+}
+.tech-item i {
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: .5rem;
+  display: block;
+}
+.tech-item span {
+  font-size: .8rem;
+  color: var(--text);
+  display: block;
+  font-weight: 500;
+}
+
+/* Estilos para a Barra de Skill (do site.html) */
+.skill-level-display {
+  text-align: center;
+  margin-bottom: 2rem;
+  min-height: 50px; /* Garante espaço para o texto "Selecione" */
+}
+.skill-bar-container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+.skill-bar-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.skill-bar-label span:last-child {
+  color: var(--primary);
+}
+.skill-bar-track {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.skill-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), #00cc33);
+  box-shadow: 0 0 10px var(--primary);
+}
