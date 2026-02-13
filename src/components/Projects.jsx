@@ -19,8 +19,8 @@ const projectsData = [
   },
   {
     id: 2,
-    name: 'Agente Autônomo',
-    title: 'PokeBot - Game Agent com Computer Vision',
+    name: 'PokeBot - Agente Autônomo',
+    title: 'Game Agent com Computer Vision',
     desc: 'Autonomous game agent leveraging Computer Vision (OCR), MVC Architecture, and ETL pipelines for real-time strategy execution.',
     tags: ['Python', 'Automation', 'OCR', 'Computer Vision', 'ETL', 'Selenium'],
     category: 'professional',
