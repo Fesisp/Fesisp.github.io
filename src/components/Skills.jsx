@@ -5,39 +5,45 @@ import { SiPython, SiMicrosoftazure, SiReact, SiJavascript, SiTypescript, SiTail
 import { FaJava } from 'react-icons/fa';
 
 const techLogos = [
-  { node: <SiPython className="text-[#3776AB]" />, title: "Python", usage: "Backend, Automação, PyPI", affinity: 95 },
-  { node: <FaJava className="text-[#007396]" />, title: "Java", usage: "Spring Boot, Microservices, Games", affinity: 80 },
-  { node: <SiDocker className="text-[#2496ED]" />, title: "Docker", usage: "Containerização, Microserviços", affinity: 85 },
-  { node: <SiReact className="text-[#61DAFB]" />, title: "React", usage: "Portfolio Interativo", affinity: 80 },
-  { node: <SiTailwindcss className="text-[#06B6D4]" />, title: "Tailwind", usage: "Portfolio Interativo", affinity: 85 },
-  { node: <SiGit className="text-[#F05032]" />, title: "Git", usage: "Controle de Versão, CI/CD", affinity: 90 },
-  { node: <SiPostgresql className="text-[#4169E1]" />, title: "PostgreSQL", usage: "Banco de Dados Relacional", affinity: 75 },
-  { node: <Database className="text-gray-400" />, title: "SQLite", usage: "Sistemas Bancários", affinity: 80 },
-  { node: <Terminal className="text-gray-400" />, title: "Shell Script", usage: "Automação de Infraestrutura", affinity: 85 },
+  { node: <SiPython className="text-[#3776AB]" />, title: "Python", usage: "Backend, Automação, PyPI, Flask", affinity: 95 },
+  { node: <FaJava className="text-[#007396]" />, title: "Java", usage: "Spring Boot, Microservices, OOP", affinity: 80 },
+  { node: <SiDocker className="text-[#2496ED]" />, title: "Docker", usage: "Containerização, Cloud Native", affinity: 85 },
+  { node: <SiReact className="text-[#61DAFB]" />, title: "React", usage: "Frontend, SPA", affinity: 80 },
+  { node: <SiTailwindcss className="text-[#06B6D4]" />, title: "Tailwind CSS", usage: "Styling, Design System", affinity: 85 },
+  { node: <SiGit className="text-[#F05032]" />, title: "Git", usage: "Versionamento, CI/CD", affinity: 90 },
+  { node: <SiPostgresql className="text-[#4169E1]" />, title: "PostgreSQL", usage: "Database Relacional", affinity: 80 },
+  { node: <Database className="text-gray-400" />, title: "SQLite", usage: "Embedded Database", affinity: 80 },
+  { node: <SiSpring className="text-[#6DB33F]" />, title: "Spring Boot", usage: "Microserviços Java", affinity: 75 },
+  { node: <Code2 className="text-gray-400" />, title: "Flask", usage: "REST API Python", affinity: 85 },
 ];
 
 const skillsData = {
   "Backend & Automação": [
     { name: 'Python', icon: <SiPython className="text-[#3776AB]" />, usage: "Backend, Automação, PyPI", affinity: 95 },
-    { name: 'Java', icon: <FaJava className="text-[#007396]" />, usage: "Spring Boot, Microservices, Games", affinity: 80 },
-    { name: 'Spring Boot', icon: <SiSpring className="text-[#6DB33F]" />, usage: "Microserviços Enterprise", affinity: 75 },
-    { name: 'Flask', icon: <Code2 className="text-gray-400" />, usage: "APIs REST Python", affinity: 85 },
+    { name: 'Flask', icon: <Code2 className="text-gray-400" />, usage: "REST API, SaaS", affinity: 85 },
+    { name: 'Java', icon: <FaJava className="text-[#007396]" />, usage: "Backend Enterprise", affinity: 80 },
+    { name: 'Spring Boot', icon: <SiSpring className="text-[#6DB33F]" />, usage: "Microserviços", affinity: 75 },
   ],
-  "Infra & Cloud": [
-    { name: 'Docker', icon: <SiDocker className="text-[#2496ED]" />, usage: "Containerização, Microserviços", affinity: 85 },
-    { name: 'Docker Compose', icon: <Box className="text-[#2496ED]" />, usage: "Orquestração de Containers", affinity: 80 },
-    { name: 'Linux', icon: <Terminal className="text-gray-400" />, usage: "Administração de Servidores", affinity: 85 },
-    { name: 'Git', icon: <SiGit className="text-[#F05032]" />, usage: "Controle de Versão", affinity: 90 },
-    { name: 'GitHub Actions', icon: <GitBranch className="text-gray-400" />, usage: "CI/CD Pipelines", affinity: 75 },
+  "Infra & DevOps": [
+    { name: 'Docker', icon: <SiDocker className="text-[#2496ED]" />, usage: "Containerização", affinity: 85 },
+    { name: 'Docker Compose', icon: <Box className="text-[#2496ED]" />, usage: "Orquestração", affinity: 80 },
+    { name: 'Git', icon: <SiGit className="text-[#F05032]" />, usage: "Versionamento", affinity: 90 },
+    { name: 'GitHub Actions', icon: <GitBranch className="text-gray-400" />, usage: "CI/CD", affinity: 75 },
+    { name: 'Linux', icon: <Terminal className="text-gray-400" />, usage: "Servers", affinity: 85 },
   ],
   "Databases": [
-    { name: 'PostgreSQL', icon: <SiPostgresql className="text-[#4169E1]" />, usage: "Banco Relacional", affinity: 75 },
-    { name: 'SQLite', icon: <Database className="text-gray-400" />, usage: "Sistemas Bancários", affinity: 80 },
+    { name: 'PostgreSQL', icon: <SiPostgresql className="text-[#4169E1]" />, usage: "Relacional", affinity: 80 },
+    { name: 'SQLite', icon: <Database className="text-gray-400" />, usage: "Embedded", affinity: 80 },
+    { name: 'SQLAlchemy', icon: <Database className="text-orange-500" />, usage: "ORM Python", affinity: 85 },
   ],
   "Frontend": [
-    { name: 'React', icon: <SiReact className="text-[#61DAFB]" />, usage: "Portfolio Pessoal", affinity: 80 },
-    { name: 'Tailwind CSS', icon: <SiTailwindcss className="text-[#06B6D4]" />, usage: "Portfolio Pessoal", affinity: 85 },
-    { name: 'Framer Motion', icon: <Layout className="text-purple-500" />, usage: "Animações React", affinity: 70 },
+    { name: 'React', icon: <SiReact className="text-[#61DAFB]" />, usage: "SPA", affinity: 80 },
+    { name: 'Tailwind CSS', icon: <SiTailwindcss className="text-[#06B6D4]" />, usage: "Styling", affinity: 85 },
+    { name: 'Framer Motion', icon: <Layout className="text-purple-500" />, usage: "Animações", affinity: 70 },
+  ],
+  "Testing & Quality": [
+    { name: 'Pytest', icon: <Code2 className="text-yellow-500" />, usage: "Unit Tests", affinity: 85 },
+    { name: 'GitHub Copilot', icon: <Cpu className="text-purple-500" />, usage: "AI Pair Programming", affinity: 90 },
   ]
 };
 
