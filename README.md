@@ -124,7 +124,7 @@ O site estará disponível em: `https://Fesisp.github.io/Site/`
 
 **Felipe da Silva Spínola**
 
-- **LinkedIn**: [linkedin.com/in/seu-perfil](https://linkedin.com/in/seu-perfil)
+- **LinkedIn**: [[linkedin.com/in/felipe-da-silva-spinola](https://www.linkedin.com/in/felipe-da-silva-spinola/)]
 - **GitHub**: [github.com/Fesisp](https://github.com/Fesisp)
 - **Email**: mrfelipefss@gmail.com
 
