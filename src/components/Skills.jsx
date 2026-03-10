@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Code2, Database, Cloud, Terminal, Cpu, Coffee, Server, Globe, Layout, GitBranch, Box } from 'lucide-react';
+import React from 'react';
+import { Code2, Database, Terminal, Layout, GitBranch, Box, Cpu } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { SiPython, SiMicrosoftazure, SiReact, SiJavascript, SiTypescript, SiTailwindcss, SiDocker, SiGit, SiPostgresql, SiMongodb, SiOpenai, SiSpring, SiMicrosoft } from 'react-icons/si';
+import { SiPython, SiReact, SiTailwindcss, SiDocker, SiGit, SiPostgresql, SiSpring } from 'react-icons/si';
 import { FaJava } from 'react-icons/fa';
 
 const techLogos = [
