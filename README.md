@@ -31,6 +31,13 @@ npm run dev
 npm run build
 ```
 
+## Segurança e qualidade
+
+- `npm run check`: executa lint + build para validação local/CI.
+- `npm run audit`: verifica vulnerabilidades de dependências (nível alto/crítico).
+- Source maps desativados em produção para reduzir exposição de código-fonte.
+- Segredos devem permanecer fora do front-end (usar variáveis de ambiente no provedor).
+
 ## Deploy
 
 ```bash

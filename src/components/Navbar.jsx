@@ -36,9 +36,9 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-dark/90 backdrop-blur-md border-b border-primary/20 py-3' : 'bg-transparent py-5'}`}>
+    <nav aria-label="Navegação principal" className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-dark/90 backdrop-blur-md border-b border-primary/20 py-3' : 'bg-transparent py-5'}`}>
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <a href="#" className="flex items-center gap-2 text-xl font-bold font-mono text-white group z-50 relative">
+        <a href="#home" className="flex items-center gap-2 text-xl font-bold font-mono text-white group z-50 relative">
           <Terminal className="text-primary group-hover:animate-pulse" />
           <span>FELIPE<span className="text-primary">.DEV</span></span>
         </a>
@@ -58,7 +58,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Toggle */}
-        <button className="md:hidden text-white z-50 relative" onClick={() => setIsOpen(!isOpen)}>
+        <button type="button" aria-label="Abrir menu" className="md:hidden text-white z-50 relative" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X /> : <Menu />}
         </button>
       </div>

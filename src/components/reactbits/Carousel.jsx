@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { FiCircle, FiCode, FiFileText, FiLayers, FiLayout, FiGithub, FiExternalLink } from 'react-icons/fi';
+import ExternalLink from '../ExternalLink';
 
 import './Carousel.css';
 
@@ -223,14 +224,14 @@ export default function Carousel({
                 {item.links && (
                   <div className="carousel-item-links">
                     {item.links.repo && (
-                      <a href={item.links.repo} target="_blank" rel="noopener noreferrer" className="carousel-link" title="Ver Código">
+                      <ExternalLink href={item.links.repo} className="carousel-link" title="Ver Código">
                         <FiGithub />
-                      </a>
+                      </ExternalLink>
                     )}
                     {item.links.demo && item.links.demo !== '#' && (
-                      <a href={item.links.demo} target="_blank" rel="noopener noreferrer" className="carousel-link" title="Ver Demo">
+                      <ExternalLink href={item.links.demo} className="carousel-link" title="Ver Demo">
                         <FiExternalLink />
-                      </a>
+                      </ExternalLink>
                     )}
                   </div>
                 )}
@@ -244,11 +245,20 @@ export default function Carousel({
           {items.map((_, index) => (
             <motion.div
               key={index}
+              role="button"
+              tabIndex={0}
+              aria-label={`Ir para item ${index + 1}`}
               className={`carousel-indicator ${currentIndex % items.length === index ? 'active' : 'inactive'}`}
               animate={{
                 scale: currentIndex % items.length === index ? 1.2 : 1
               }}
               onClick={() => setCurrentIndex(index)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  setCurrentIndex(index);
+                }
+              }}
               transition={{ duration: 0.15 }}
             />
           ))}

@@ -44,6 +44,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-transparent text-white font-sans selection:bg-primary selection:text-black overflow-x-hidden cursor-none">
+      <a href="#main-content" className="skip-link">Pular para o conteúdo</a>
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-primary origin-left z-50 shadow-[0_0_10px_#00ff41]"
         style={{ scaleX }}
@@ -54,7 +55,7 @@ function App() {
       
       <div className="relative z-10">
         <Navbar />
-        <main>
+        <main id="main-content">
           <Hero />
           <About />
           <Skills onSkillSelect={handleSkillSelect} activeTech={activeTech} />

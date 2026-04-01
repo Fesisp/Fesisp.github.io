@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Linkedin, Github, MessageCircle, Check } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
+import ExternalLink from './ExternalLink';
 
 const Contact = () => {
   const [copied, setCopied] = useState(false);
@@ -25,7 +26,7 @@ const Contact = () => {
       title: 'LinkedIn', 
       value: 'Conecte-se', 
       action: 'Acessar',
-      href: 'https://linkedin.com/in/seu-perfil'
+      href: 'https://www.linkedin.com/in/felipe-da-silva-spinola/'
     },
     { 
       icon: <Github size={20} />, 
@@ -39,7 +40,7 @@ const Contact = () => {
       title: 'WhatsApp', 
       value: 'Conversar', 
       action: 'Abrir',
-      href: 'https://wa.me/5511999999999'
+      href: 'https://wa.me/5595984059374'
     },
   ];
 
@@ -51,6 +52,8 @@ const Contact = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
+            role="status"
+            aria-live="polite"
             className="fixed bottom-10 left-1/2 -translate-x-1/2 bg-primary text-black px-6 py-3 rounded-full font-bold flex items-center gap-2 shadow-[0_0_20px_rgba(0,255,65,0.4)] z-50"
           >
             <Check size={20} />
@@ -84,20 +87,19 @@ const Contact = () => {
 
               {contact.isCopy ? (
                 <button
+                  type="button"
                   onClick={contact.onClick}
                   className="w-full py-2 rounded-lg bg-primary text-black font-semibold hover:opacity-90 transition-opacity"
                 >
                   {contact.action}
                 </button>
               ) : (
-                <a
+                <ExternalLink
                   href={contact.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="block w-full py-2 rounded-lg border border-primary/40 text-primary text-center font-semibold hover:bg-primary/10 transition-colors"
                 >
                   {contact.action}
-                </a>
+                </ExternalLink>
               )}
             </motion.div>
           ))}
