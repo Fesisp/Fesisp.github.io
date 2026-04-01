@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Github, ExternalLink, Code2, Terminal, Cpu, Database, X } from 'lucide-react';
+import { Code2, Terminal, Cpu, Database, X } from 'lucide-react';
 import Carousel from './reactbits/Carousel';
 
 const projectsData = [

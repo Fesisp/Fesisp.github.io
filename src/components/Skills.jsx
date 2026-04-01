@@ -1,5 +1,5 @@
 import React from 'react';
-import { Code2, Database, Terminal, Layout, GitBranch, Box, Cpu } from 'lucide-react';
+import { Cloud, Code2, Database, Terminal, Layout, GitBranch, Box, Cpu } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SiPython, SiReact, SiTailwindcss, SiDocker, SiGit, SiPostgresql, SiSpring } from 'react-icons/si';
 import { FaJava } from 'react-icons/fa';

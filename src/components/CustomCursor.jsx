@@ -41,7 +41,7 @@ const CustomCursor = () => {
       window.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mouseup', handleMouseUp);
     };
-  }, []);
+  }, [cursorX, cursorY]);
 
   return (
     <>

@@ -12,7 +12,6 @@ import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
 
 function App() {
-  const [loading, setLoading] = useState(true);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [activeTech, setActiveTech] = useState(null);
   const { scrollYProgress } = useScroll();
@@ -23,9 +22,6 @@ function App() {
   });
 
   useEffect(() => {
-    // Simula um carregamento inicial para efeito "boot"
-    const timer = setTimeout(() => setLoading(false), 2000);
-    
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 500);
     };
@@ -33,7 +29,6 @@ function App() {
     window.addEventListener('scroll', handleScroll);
     
     return () => {
-      clearTimeout(timer);
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
@@ -46,16 +41,6 @@ function App() {
     setActiveTech(tech);
     // Scroll logic removed to keep user in context
   };
-
-  if (loading) {
-    return (
-      <div className="fixed inset-0 bg-black flex items-center justify-center z-50">
-        <div className="text-primary font-mono text-xl animate-pulse">
-          INITIALIZING SYSTEM...
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-transparent text-white font-sans selection:bg-primary selection:text-black overflow-x-hidden cursor-none">

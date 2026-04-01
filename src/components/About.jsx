@@ -1,5 +1,5 @@
 import React from 'react';
-import { User, Briefcase, Award } from 'lucide-react';
+import { User, Briefcase } from 'lucide-react';
 
 const About = () => {
   return (
@@ -20,7 +20,7 @@ const About = () => {
               <h3 className="text-xl font-bold text-white">Quem Sou</h3>
             </div>
             <p className="text-gray-400 leading-loose mb-6">
-              Minha base é a infraestrutura. Com mais de 4 anos atuando em ambientes de alta criticidade (Exército Brasileiro e Positivo S+), desenvolvi a "casca grossa" necessária para manter sistemas no ar sob pressão.
+              Minha base é a infraestrutura. Com mais de 4 anos atuando em ambientes de alta criticidade (Exército Brasileiro e Positivo S+), desenvolvi a &quot;casca grossa&quot; necessária para manter sistemas no ar sob pressão.
             </p>
             <p className="text-gray-400 leading-loose">
               Não sou apenas um operador; sou um construtor. Nos últimos 2 anos, expandi minha atuação para a Engenharia de Software, criando soluções SaaS completas para resolver problemas reais de gestão. Hoje, atuo na lacuna entre Dev e Ops, <strong>automatizando processos manuais com Python e containerizando aplicações com Docker</strong>.
@@ -61,7 +61,7 @@ const About = () => {
                 <span className="text-xs font-mono text-gray-500 mb-1 block">2023 - Nov 2025</span>
                 <h4 className="text-white font-bold">Desenvolvedor Full Stack & Arquiteto de Sistemas</h4>
                 <span className="text-sm text-gray-500 block mb-2">Secretaria de Educação - RR (Projeto Interno)</span>
-                <p className="text-sm text-gray-400">Idealizei, arquitetei e desenvolvi o <strong>"Ambiente Escolar Digital"</strong>, uma plataforma SaaS completa (Python/Flask/Docker). O sistema modernizou o controle acadêmico, implementando segurança RBAC e reduzindo em 40% o tempo de gestão administrativa.</p>
+                <p className="text-sm text-gray-400">Idealizei, arquitetei e desenvolvi o <strong>&quot;Ambiente Escolar Digital&quot;</strong>, uma plataforma SaaS completa (Python/Flask/Docker). O sistema modernizou o controle acadêmico, implementando segurança RBAC e reduzindo em 40% o tempo de gestão administrativa.</p>
               </div>
 
               <div className="relative pl-6">

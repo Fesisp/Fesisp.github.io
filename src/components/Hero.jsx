@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TypeAnimation } from 'react-type-animation';
-import { ArrowRight, Download, ChevronDown, MapPin, Globe } from 'lucide-react';
+import { ArrowRight, Download, ChevronDown, Globe } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Hero = () => {
