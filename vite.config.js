@@ -9,10 +9,24 @@ export default defineConfig({
     sourcemap: false,
     rollupOptions: {
       output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          'animation': ['framer-motion'],
-          'icons': ['lucide-react', 'react-icons']
+        manualChunks(id) {
+          if (!id.includes('node_modules')) {
+            return undefined
+          }
+
+          if (id.includes('react-dom') || id.includes('/react/')) {
+            return 'react-vendor'
+          }
+
+          if (id.includes('framer-motion')) {
+            return 'animation'
+          }
+
+          if (id.includes('lucide-react') || id.includes('react-icons')) {
+            return 'icons'
+          }
+
+          return undefined
         }
       }
     },

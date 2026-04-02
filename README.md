@@ -5,7 +5,7 @@ Portfólio pessoal desenvolvido com React, Vite e Tailwind CSS, com foco em perf
 ## Stack
 
 - React 18
-- Vite 5
+- Vite 8
 - Tailwind CSS
 - Framer Motion
 - Lucide React + React Icons
